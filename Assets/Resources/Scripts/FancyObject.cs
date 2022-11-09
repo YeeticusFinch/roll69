@@ -37,6 +37,11 @@ public class FancyObject : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        while (GetSprite(currentDisplay) == null && GetModel(currentDisplay - sprites.Length) == null)
+        {
+            currentDisplay++;
+            currentDisplay %= sprites.Length + models.Length;
+        }
         UpdateDisplay();
         modelEulers = Vector3.zero;
     }
@@ -183,6 +188,15 @@ public class FancyObject : NetworkBehaviour
     public void Deserialize(string input)
     {
         int i = 0;
+        model0 = null;
+        model1 = null;
+        model2 = null;
+        sprite0 = null;
+        sprite1 = null;
+        sprite2 = null;
+        sprite3 = null;
+        sprite4 = null;
+        sprite5 = null;
         while (i < input.Length && input.IndexOf(':', i) != -1)
         {
             /*
@@ -254,61 +268,61 @@ public class FancyObject : NetworkBehaviour
                     timestamp = long.Parse(val);
                     break;
                 case "sprite0":
-                    if (sprite0 == null || sprite0.Equals(""))
+                    if (val == null || val.Equals(""))
                         break;
                     sprite0 = val;
                     sprites[0] = Resources.Load(val) as Sprite;
                     break;
                 case "sprite1":
-                    if (sprite1 == null || sprite1.Equals(""))
+                    if (val == null || val.Equals(""))
                         break;
                     sprite1 = val;
                     sprites[1] = Resources.Load(val) as Sprite;
                     break;
                 case "sprite2":
-                    if (sprite2 == null || sprite2.Equals(""))
+                    if (val == null || val.Equals(""))
                         break;
                     sprite2 = val;
                     sprites[2] = Resources.Load(val) as Sprite;
                     break;
                 case "sprite3":
-                    if (sprite3 == null || sprite3.Equals(""))
+                    if (val == null || val.Equals(""))
                         break;
                     sprite3 = val;
                     sprites[3] = Resources.Load(val) as Sprite;
                     break;
                 case "sprite4":
-                    if (sprite4 == null || sprite4.Equals(""))
+                    if (val == null || val.Equals(""))
                         break;
                     sprite4 = val;
                     sprites[4] = Resources.Load(val) as Sprite;
                     break;
                 case "sprite5":
-                    if (sprite5 == null || sprite5.Equals(""))
+                    if (val == null || val.Equals(""))
                         break;
                     sprite5 = val;
                     sprites[5] = Resources.Load(val) as Sprite;
                     break;
                 case "model0":
-                    if (model0 == null || model0.Equals(""))
+                    if (val == null || val.Equals(""))
                         break;
                     model0 = val;
                     models[0] = Resources.Load(val) as GameObject;
                     break;
                 case "model1":
-                    if (model1 == null || model1.Equals(""))
+                    if (val == null || val.Equals(""))
                         break;
                     model1 = val;
                     models[1] = Resources.Load(val) as GameObject;
                     break;
                 case "model2":
-                    if (model2 == null || model2.Equals(""))
+                    if (val == null || val.Equals(""))
                         break;
                     model2 = val;
                     models[2] = Resources.Load(val) as GameObject;
                     break;
                 case "model3":
-                    if (model3 == null || model3.Equals(""))
+                    if (val == null || val.Equals(""))
                         break;
                     model3 = val;
                     models[3] = Resources.Load(val) as GameObject;
@@ -326,32 +340,32 @@ public class FancyObject : NetworkBehaviour
 
     public string Serialize()
     {
-        return "id:" + id 
-            + ";name:" + name 
-            + ";flat:" + (flat ? 1 : 0) 
-            + ";owner:" + owner 
-            + ";hp:" + hp 
-            + ";ac:" + ac 
-            + ";xpos:" + transform.position.x 
-            + ";ypos:" + transform.position.y 
-            + ";zpos:" + transform.position.z 
-            + ";xsiz:" + transform.localScale.x 
-            + ";ysiz:" + transform.localScale.y 
-            + ";zsiz:" + transform.localScale.z 
-            + ";xeul:" + transform.eulerAngles.x 
-            + ";yeul:" + transform.eulerAngles.y 
-            + ";zeul:" + transform.eulerAngles.z 
-            + ";timestamp:" + System.DateTimeOffset.Now.ToUnixTimeMilliseconds() 
-            + ";sprite0:" + sprite0 
-            + ";sprite1:" + sprite1 
-            + ";sprite2:" + sprite2 
-            + ";sprite3:" + sprite3 
-            + ";sprite4:" + sprite4 
-            + ";sprite5:" + sprite5 
-            + ";model0:" + model0 
-            + ";model1:" + model1 
-            + ";model2:" + model2 
-            + ";model3:" + model3
+        return "id:" + id
+            + ";name:" + name
+            + ";flat:" + (flat ? 1 : 0)
+            + ";owner:" + owner
+            + ";hp:" + hp
+            + ";ac:" + ac
+            + ";xpos:" + transform.position.x
+            + ";ypos:" + transform.position.y
+            + ";zpos:" + transform.position.z
+            + ";xsiz:" + transform.localScale.x
+            + ";ysiz:" + transform.localScale.y
+            + ";zsiz:" + transform.localScale.z
+            + ";xeul:" + transform.eulerAngles.x
+            + ";yeul:" + transform.eulerAngles.y
+            + ";zeul:" + transform.eulerAngles.z
+            + ";timestamp:" + System.DateTimeOffset.Now.ToUnixTimeMilliseconds()
+            + (sprite0 != null && sprite0.Length > 0 ? ";sprite0:" + sprite0 : "")
+            + (sprite1 != null && sprite1.Length > 0 ? ";sprite1:" + sprite1 : "")
+            + (sprite2 != null && sprite2.Length > 0 ? ";sprite2:" + sprite2 : "")
+            + (sprite3 != null && sprite3.Length > 0 ? ";sprite3:" + sprite3 : "")
+            + (sprite4 != null && sprite4.Length > 0 ? ";sprite4:" + sprite4 : "")
+            + (sprite5 != null && sprite5.Length > 0 ? ";sprite5:" + sprite5 : "")
+            + (model0 != null && model0.Length > 0 ? ";model0:" + model0 : "")
+            + (model1 != null && model1.Length > 0 ? ";model1:" + model1 : "")
+            + (model2 != null && model2.Length > 0 ? ";model2:" + model2 : "")
+            + (model3 != null && model3.Length > 0 ? ";model3:" + model3 : "")
             + ";currentDisplay:" + currentDisplay
             + ";hide:" + (hide ? "true" : "false")
             + ";";

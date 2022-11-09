@@ -196,18 +196,38 @@ public class FancyCam : MonoBehaviour {
     void deserialize(string m)
     {
         GameObject[] fancyObjects = GameObject.FindGameObjectsWithTag("FancyObject");
+        bool[] fancyList = new bool[fancyObjects.Length];
         int p = 0;
         while (p < m.Length && m.IndexOf("}", p) != -1 && m.IndexOf("{", p) != -1)
         {
             p = m.IndexOf("{", p) + 1;
             string id = m.Substring(m.IndexOf("id:", p) + 3, m.IndexOf(";", p) - (m.IndexOf("id:", p) + 3));
-            foreach (GameObject o in fancyObjects)
+            bool foundIt = false;
+            for (int i = 0; i < fancyObjects.Length; i++)
             {
+                GameObject o = fancyObjects[i];
                 if (o.GetComponent<FancyObject>().id.Equals(id))
                 {
+                    fancyList[i] = true;
+                    foundIt = true;
                     o.GetComponent<FancyObject>().Deserialize(m.Substring(p, m.IndexOf("}", p) - p));
                     break;
                 }
+            }
+            if (!foundIt)
+            {
+                GameObject newObject = Resources.Load("Display/FancyObjectTemplate") as GameObject;
+                newObject.GetComponent<FancyObject>().Deserialize(m.Substring(p, m.IndexOf("}", p) - p));
+                GameObject.Instantiate(newObject);
+                foundIt = true;
+            }
+        }
+        for (int i = fancyList.Length - 1; i >= 0; i++)
+        {
+            if (!fancyList[i])
+            {
+                Debug.Log("Destroying " + fancyObjects[i].GetComponent<FancyObject>().title);
+                GameObject.Destroy(fancyObjects[i]);
             }
         }
     }
@@ -277,11 +297,18 @@ public class FancyCam : MonoBehaviour {
         }
     }*/
 
+    bool clickAniming = false;
+
     IEnumerator ClickAnim(TextMesh text)
     {
-        Color ogColor = text.color;
-        text.color = new Color(1 - ogColor.r, 1 - ogColor.g, 1 - ogColor.b);
-        yield return new WaitForSeconds(0.2f);
-        text.color = ogColor;
+        if (clickAniming == false)
+        {
+            clickAniming = true;
+            Color ogColor = text.color;
+            text.color = new Color(1 - ogColor.r, 1 - ogColor.g, 1 - ogColor.b);
+            yield return new WaitForSeconds(0.2f);
+            text.color = ogColor;
+            clickAniming = false;
+        }
     }
 }
