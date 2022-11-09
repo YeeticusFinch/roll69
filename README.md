@@ -4,11 +4,17 @@
 
 A subtle spin-off of the Roll20 virtual tabletop
 
+## Current Features:
+
+- 3d maps
+- layered 2d maps
+- 2d maps
+- tokens can be represented with either a 3d model or a 2d image
+- DM layer (hidden from players)
+- Saves online in the cloud
+
 ## Planned Features:
 
-- 3d maps (2d maps but you can do multiple levels)
-- tokens can be represented with either a 3d model or a 2d image
 - 3d area effect selectors
-- DM layer (players can't see stuff on this layer)
 - 3D dice roller
-- Saves online in the cloud
+- select between different maps
