@@ -1,0 +1,407 @@
+fileFormatVersion: 2
+guid: 8ebd126aefeb64444be5e6b4b178c400
+timeCreated: 1665935730
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Chest
+    100004: CINEMA_4D_Editor
+    100006: Circle.000
+    100008: Circle.001
+    100010: Cube
+    100012: Field
+    100014: //RootNode
+    100016: Null
+    100018: Plane
+    100020: Plane.001
+    100022: Plane.002
+    100024: Point
+    100026: swat_Head
+    100028: swat_Head_end
+    100030: swat_Head_end_end
+    100032: swat_Head_end_Goal
+    100034: swat_Hips
+    100036: swat_LeftArm
+    100038: swat_LeftFoot
+    100040: swat_LeftFoot_Goal
+    100042: swat_LeftForeArm
+    100044: swat_LeftHand
+    100046: swat_LeftHand_Goal
+    100048: swat_LeftHandIndex1
+    100050: swat_LeftHandIndex2
+    100052: swat_LeftHandIndex3
+    100054: swat_LeftHandIndex3_end
+    100056: swat_LeftHandIndex3_end_end
+    100058: swat_LeftHandMiddle1
+    100060: swat_LeftHandMiddle2
+    100062: swat_LeftHandMiddle3
+    100064: swat_LeftHandMiddle3_end
+    100066: swat_LeftHandMiddle3_end_end
+    100068: swat_LeftHandPinky1
+    100070: swat_LeftHandPinky2
+    100072: swat_LeftHandPinky3
+    100074: swat_LeftHandPinky3_end
+    100076: swat_LeftHandPinky3_end_end
+    100078: swat_LeftHandRing1
+    100080: swat_LeftHandRing2
+    100082: swat_LeftHandRing3
+    100084: swat_LeftHandRing3_end
+    100086: swat_LeftHandRing3_end_end
+    100088: swat_LeftHandThumb1
+    100090: swat_LeftHandThumb2
+    100092: swat_LeftHandThumb3
+    100094: swat_LeftHandThumb3_end
+    100096: swat_LeftHandThumb3_end_end
+    100098: swat_LeftLeg
+    100100: swat_LeftShoulder
+    100102: swat_LeftToeBase
+    100104: swat_LeftToeBase_end
+    100106: swat_LeftToeBase_end_end
+    100108: swat_LeftUpLeg
+    100110: swat_Neck
+    100112: swat_Neck1
+    100114: swat_RightArm
+    100116: swat_RightFoot
+    100118: swat_RightFoot_Goal
+    100120: swat_RightForeArm
+    100122: swat_RightHand
+    100124: swat_RightHand_Goal
+    100126: swat_RightHandIndex1
+    100128: swat_RightHandIndex2
+    100130: swat_RightHandIndex3
+    100132: swat_RightHandIndex3_end
+    100134: swat_RightHandIndex3_end_end
+    100136: swat_RightHandMiddle1
+    100138: swat_RightHandMiddle2
+    100140: swat_RightHandMiddle3
+    100142: swat_RightHandMiddle3_end
+    100144: swat_RightHandMiddle3_end_end
+    100146: swat_RightHandPinky1
+    100148: swat_RightHandPinky2
+    100150: swat_RightHandPinky3
+    100152: swat_RightHandPinky3_end
+    100154: swat_RightHandPinky3_end_end
+    100156: swat_RightHandRing1
+    100158: swat_RightHandRing2
+    100160: swat_RightHandRing3
+    100162: swat_RightHandRing3_end
+    100164: swat_RightHandRing3_end_end
+    100166: swat_RightHandThumb1
+    100168: swat_RightHandThumb2
+    100170: swat_RightHandThumb3
+    100172: swat_RightHandThumb3_end
+    100174: swat_RightHandThumb3_end_end
+    100176: swat_RightLeg
+    100178: swat_RightShoulder
+    100180: swat_RightToeBase
+    100182: swat_RightToeBase_end
+    100184: swat_RightToeBase_end_end
+    100186: swat_RightUpLeg
+    100188: swat_Spine
+    100190: swat_Spine1
+    100192: Plane.003
+    100194: Plane.004
+    100196: Plane.005
+    100198: Cube.001
+    400000: Armature
+    400002: Chest
+    400004: CINEMA_4D_Editor
+    400006: Circle.000
+    400008: Circle.001
+    400010: Cube
+    400012: Field
+    400014: //RootNode
+    400016: Null
+    400018: Plane
+    400020: Plane.001
+    400022: Plane.002
+    400024: Point
+    400026: swat_Head
+    400028: swat_Head_end
+    400030: swat_Head_end_end
+    400032: swat_Head_end_Goal
+    400034: swat_Hips
+    400036: swat_LeftArm
+    400038: swat_LeftFoot
+    400040: swat_LeftFoot_Goal
+    400042: swat_LeftForeArm
+    400044: swat_LeftHand
+    400046: swat_LeftHand_Goal
+    400048: swat_LeftHandIndex1
+    400050: swat_LeftHandIndex2
+    400052: swat_LeftHandIndex3
+    400054: swat_LeftHandIndex3_end
+    400056: swat_LeftHandIndex3_end_end
+    400058: swat_LeftHandMiddle1
+    400060: swat_LeftHandMiddle2
+    400062: swat_LeftHandMiddle3
+    400064: swat_LeftHandMiddle3_end
+    400066: swat_LeftHandMiddle3_end_end
+    400068: swat_LeftHandPinky1
+    400070: swat_LeftHandPinky2
+    400072: swat_LeftHandPinky3
+    400074: swat_LeftHandPinky3_end
+    400076: swat_LeftHandPinky3_end_end
+    400078: swat_LeftHandRing1
+    400080: swat_LeftHandRing2
+    400082: swat_LeftHandRing3
+    400084: swat_LeftHandRing3_end
+    400086: swat_LeftHandRing3_end_end
+    400088: swat_LeftHandThumb1
+    400090: swat_LeftHandThumb2
+    400092: swat_LeftHandThumb3
+    400094: swat_LeftHandThumb3_end
+    400096: swat_LeftHandThumb3_end_end
+    400098: swat_LeftLeg
+    400100: swat_LeftShoulder
+    400102: swat_LeftToeBase
+    400104: swat_LeftToeBase_end
+    400106: swat_LeftToeBase_end_end
+    400108: swat_LeftUpLeg
+    400110: swat_Neck
+    400112: swat_Neck1
+    400114: swat_RightArm
+    400116: swat_RightFoot
+    400118: swat_RightFoot_Goal
+    400120: swat_RightForeArm
+    400122: swat_RightHand
+    400124: swat_RightHand_Goal
+    400126: swat_RightHandIndex1
+    400128: swat_RightHandIndex2
+    400130: swat_RightHandIndex3
+    400132: swat_RightHandIndex3_end
+    400134: swat_RightHandIndex3_end_end
+    400136: swat_RightHandMiddle1
+    400138: swat_RightHandMiddle2
+    400140: swat_RightHandMiddle3
+    400142: swat_RightHandMiddle3_end
+    400144: swat_RightHandMiddle3_end_end
+    400146: swat_RightHandPinky1
+    400148: swat_RightHandPinky2
+    400150: swat_RightHandPinky3
+    400152: swat_RightHandPinky3_end
+    400154: swat_RightHandPinky3_end_end
+    400156: swat_RightHandRing1
+    400158: swat_RightHandRing2
+    400160: swat_RightHandRing3
+    400162: swat_RightHandRing3_end
+    400164: swat_RightHandRing3_end_end
+    400166: swat_RightHandThumb1
+    400168: swat_RightHandThumb2
+    400170: swat_RightHandThumb3
+    400172: swat_RightHandThumb3_end
+    400174: swat_RightHandThumb3_end_end
+    400176: swat_RightLeg
+    400178: swat_RightShoulder
+    400180: swat_RightToeBase
+    400182: swat_RightToeBase_end
+    400184: swat_RightToeBase_end_end
+    400186: swat_RightUpLeg
+    400188: swat_Spine
+    400190: swat_Spine1
+    400192: Plane.003
+    400194: Plane.004
+    400196: Plane.005
+    400198: Cube.001
+    2000000: CINEMA_4D_Editor
+    2100000: Material.003
+    2100002: Material
+    2100004: Metal
+    2100006: RS Material_1
+    2100008: RS Material
+    2100010: emmision
+    2100012: Body
+    2100014: Material.001
+    2100016: Material.004
+    2100018: Material.006
+    2100020: Material.007
+    2100022: Material.002
+    2100024: Material.005
+    2100026: Material.009
+    2100028: Material.010
+    2300000: Circle.000
+    2300002: Circle.001
+    2300004: Cube
+    2300006: Plane
+    2300008: Plane.001
+    2300010: Plane.002
+    2300012: Plane.003
+    2300014: Plane.004
+    2300016: Plane.005
+    2300018: Cube.001
+    3300000: Circle.000
+    3300002: Circle.001
+    3300004: Cube
+    3300006: Plane
+    3300008: Plane.001
+    3300010: Plane.002
+    3300012: Plane.003
+    3300014: Plane.004
+    3300016: Plane.005
+    3300018: Cube.001
+    4300000: Plane
+    4300002: Circle.001
+    4300004: Chest
+    4300006: Cube
+    4300008: Plane.001
+    4300010: Plane.002
+    4300012: Circle.000
+    4300014: Plane.003
+    4300016: Plane.004
+    4300018: Plane.005
+    4300020: Cube.001
+    9500000: //RootNode
+    10800000: Point
+    13700000: Chest
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: c5158de4d4422024d8e08b23d2a88f00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 8a5bd95a679b9e64aa99825eea8f6446, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: f020f5f00445097438e5bc10d5b61f56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: bfec9d34fe93d6043913223b908eb70e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: bfec9d34fe93d6043913223b908eb70e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: f9312543f46434b4abad46d03bf5d6c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.005
+    second: {fileID: 2100000, guid: f9312543f46434b4abad46d03bf5d6c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: caf28d613bf670e419ea8add180b21c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: 4288bca7d706779448199bcf35a97ed4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.009
+    second: {fileID: 2100000, guid: f9312543f46434b4abad46d03bf5d6c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: d77d2642af992324c85950653a4df0af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RS Material
+    second: {fileID: 2100000, guid: 874008cc07d20bd4eb8e333301713f78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RS Material_1
+    second: {fileID: 2100000, guid: 25e5f70f4fe054b4787fdd99fdb7bb2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: emmision
+    second: {fileID: 2100000, guid: 51dd0f0af5667a144bdede1688078ffa, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.46666667
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -18,21 +18,59 @@ public class FancyCam : MonoBehaviour {
     public TextMesh hideText;
     public Light flashlight;
     public SshConnection ssh;
+    public TextMesh mapSelect;
+
+    private Map map;
 
     public TextMesh consoleText;
 
     public bool dm = false;
 
-    string path = "Assets/Resources/Yeet.txt";
-    string serverPath = "Yeet.txt";
+    string localPath = "Assets/Resources/";
+    //string serverPath = "Yeet.txt";
+    string fileExt = ".r69";
+
+    public List<GameObject> deleteOnClear = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
-		
+        map = this.gameObject.AddComponent<Map>();
 	}
-	
+
+    string prevKey = "";
+    public bool typeBox = false;
+
 	// Update is called once per frame
 	void Update () {
+        if (typeBox && mapSelecting && Input.anyKey)
+        {
+            //if (prevKey != null && prevKey.Length > 0 && !Input.GetKey())
+            //    prevKey = "";
+            foreach (KeyCode kcode in System.Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyDown(kcode))
+                {
+                    //Debug.Log("KeyCode down: " + kcode);
+                    if ("ABCDEFGHIJKLMNOPQRSTUVWXYZ".Contains(kcode.ToString()))
+                        {
+                        //if (!kcode.ToString().Equals(prevKey))
+                        //{
+                            //prevKey = kcode.ToString();
+                            if (Input.GetKey(KeyCode.LeftShift))
+                                mapSelect.text += kcode.ToString();
+                            else
+                                mapSelect.text += kcode.ToString().ToLower();
+                            return;
+                        //}
+                    } else if (kcode.ToString().Equals("Backspace"))
+                    {
+                        mapSelect.text = mapSelect.text.Remove(mapSelect.text.Length - 1);
+                    }
+                    break;
+                }
+            }
+            //mapSelect.text += Event.current.keyCode.ToString();
+        }
         if (Input.GetButton("Fire2"))
         {
             rotX -= Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
@@ -53,7 +91,7 @@ public class FancyCam : MonoBehaviour {
             hideText.text = "Hide = " + (selected.GetComponent<FancyObject>().hide ? "true" : "false");
         }
 
-        if (Input.GetButtonDown("Flashlight"))
+        if (Input.GetButtonDown("Flashlight") && !typeBox)
         {
             if (flashlight.intensity == 0)
                 flashlight.intensity = 1;
@@ -110,7 +148,7 @@ public class FancyCam : MonoBehaviour {
                         trackSelectedButton.text = "Track Selected = " + (trackSelected ? "true" : "false");
                     }
                 }
-                else if (hit.transform.gameObject.name.Equals("DM Text"))
+                else if (hit.transform.gameObject.name.Equals("DM Text") && !typeBox)
                 {
                     Debug.Log("DM login attempt");
                     if (ssh.tryLogin())
@@ -132,7 +170,7 @@ public class FancyCam : MonoBehaviour {
                 {
                     StartCoroutine(pushToServer());
                 }
-                else if (hit.transform.gameObject.name.Equals("Hide"))
+                else if (hit.transform.gameObject.name.Equals("Hide") && dm)
                 {
                     Debug.Log("Toggle visibility");
                     if (selected != null)
@@ -141,9 +179,64 @@ public class FancyCam : MonoBehaviour {
                         selected.GetComponent<FancyObject>().UpdateDisplay();
                     }
                 }
+                else if (hit.transform.gameObject.name.Equals("Map Select") && dm)
+                {
+                    if (!mapSelecting)
+                    {
+                        mapSelect.text = "Map Name: ";
+                        mapSelecting = true;
+                        typeBox = true;
+                        Debug.Log("Map Selector");
+                        for (int i = 0; i < map.maps.Count; i++)
+                        {
+                            Debug.Log("Creating " + "MapName=" + map.maps[i]);
+                            GameObject newObject = GameObject.Instantiate(this.mapSelect.gameObject, this.transform);
+                            newObject.transform.position += transform.right * (i + 1.35f) * 0.6f;
+                            newObject.name = "MapName";
+                            newObject.GetComponent<TextMesh>().text = map.maps[i];
+                            newObject.GetComponent<TextMesh>().color = Color.cyan;
+                            newObject.tag = "DeleteOnClear";
+                            deleteOnClear.Add(newObject);
+                        }
+                    } else
+                    {
+                        typeBox = false;
+                        mapSelecting = false;
+                        for (int i = deleteOnClear.Count-1; i >=1; i++)
+                        {
+                            GameObject.Destroy(deleteOnClear[i]);
+                            //deleteOnClear.Remove(i);
+                        }
+                        foreach (GameObject o in GameObject.FindGameObjectsWithTag("DeleteOnClear"))
+                        {
+                            GameObject.Destroy(o);
+                        }
+                        map.file = mapSelect.text.Substring(mapSelect.text.IndexOf(": ") + 2);
+                        Debug.Log("Setting map to " + map.file);
+                        map.AddMap(map.file);
+                    }
+                } else if (hit.transform.gameObject.name.Equals("MapName"))
+                {
+                    mapSelect.text = "Map Name: " + hit.transform.gameObject.GetComponent<TextMesh>().text;
+                    typeBox = false;
+                    mapSelecting = false;
+                    foreach (GameObject o in deleteOnClear)
+                        GameObject.Destroy(o);
+                    foreach (GameObject o in GameObject.FindGameObjectsWithTag("DeleteOnClear"))
+                    {
+                        GameObject.Destroy(o);
+                    }
+                    /*for (int i = deleteOnClear.Count - 1; i >= 1; i++)
+                    {
+                        GameObject.Destroy(deleteOnClear[i]);
+                        //deleteOnClear.Remove(i);
+                    }*/
+                    map.file = mapSelect.text.Substring(mapSelect.text.IndexOf(": ") + 2);
+                    Debug.Log("Setting map to " + map.file);
+                }
             }
         }
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Jump") != 0) {
+        if (!typeBox && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Jump") != 0)) {
             if (Input.GetButton("Move Selected"))
             {
                 // move the selected piece
@@ -161,12 +254,14 @@ public class FancyCam : MonoBehaviour {
         }
     }
 
+    public bool mapSelecting = false;
+
     IEnumerator pullFromFile()
     {
         yield return new WaitForEndOfFrame();
         GameObject[] fancyObjects = GameObject.FindGameObjectsWithTag("FancyObject");
-        Debug.Log("Reading from " + path);
-        System.IO.StreamReader reader = new System.IO.StreamReader(path);
+        Debug.Log("Reading from " + localPath + map.file + fileExt);
+        System.IO.StreamReader reader = new System.IO.StreamReader(localPath + map.file + fileExt);
 
         string m = reader.ReadToEnd();
         reader.Close();
@@ -179,8 +274,29 @@ public class FancyCam : MonoBehaviour {
         yield return new WaitForEndOfFrame();
         Debug.Log("Reading from server");
 
+        ssh.pullFile = "r69.main";
+
+        while (ssh.pullContents == null && ssh.connection)
+        {
+            yield return new WaitForSeconds(0.5f);
+            Debug.Log("Waiting for response");
+        }
+        if (ssh.pullContents != null)
+        {
+            Debug.Log("Found response");
+            map.Deserialize(ssh.pullContents);
+            ssh.pullContents = null;
+        }
+
+        mapSelect.text = map.file;
+
+        while (ssh.pullFile != null && ssh.pullFile.Length > 0)
+        {
+            yield return new WaitForSeconds(0.4f);
+        }
+
         //deserialize(ssh.readFromFile(serverPath));
-        ssh.pullFile = serverPath;
+        ssh.pullFile = map.file + fileExt;
         while (ssh.pullContents == null && ssh.connection)
         {
             yield return new WaitForSeconds(0.5f);
@@ -190,7 +306,10 @@ public class FancyCam : MonoBehaviour {
         {
             Debug.Log("Found response");
             deserialize(ssh.pullContents);
+            ssh.pullContents = null;
         }
+
+
     }
 
     void deserialize(string m)
@@ -222,12 +341,15 @@ public class FancyCam : MonoBehaviour {
                 foundIt = true;
             }
         }
-        for (int i = fancyList.Length - 1; i >= 0; i++)
+        if (fancyList.Length > 0)
         {
-            if (!fancyList[i])
+            for (int i = fancyList.Length - 1; i >= 0; i++)
             {
-                Debug.Log("Destroying " + fancyObjects[i].GetComponent<FancyObject>().title);
-                GameObject.Destroy(fancyObjects[i]);
+                if (i > 0 && i < fancyList.Length && !fancyList[i])
+                {
+                    Debug.Log("Destroying " + fancyObjects[i].GetComponent<FancyObject>().title);
+                    GameObject.Destroy(fancyObjects[i]);
+                }
             }
         }
     }
@@ -235,9 +357,9 @@ public class FancyCam : MonoBehaviour {
     IEnumerator pushToFile()
     {
         yield return new WaitForEndOfFrame();
-        Debug.Log("Writing to " + path);
+        Debug.Log("Writing to " + localPath + map.file + fileExt);
        
-        System.IO.File.WriteAllText(path, serialize());
+        System.IO.File.WriteAllText(localPath + map.file + fileExt, serialize());
     }
 
     IEnumerator pushToServer()
@@ -245,8 +367,16 @@ public class FancyCam : MonoBehaviour {
         yield return new WaitForEndOfFrame();
         Debug.Log("Writing to server");
 
+
+        ssh.pushFile = "r69.main";
+        ssh.pushContents = map.Serialize();
+
+
+        while (ssh.pushFile != null && ssh.pushFile.Length > 0)
+            yield return new WaitForSeconds(0.3f);
+
         //ssh.writeToFile(serverPath, serialize());
-        ssh.pushFile = serverPath;
+        ssh.pushFile = map.file + fileExt;
         ssh.pushContents = serialize();
     }
 
@@ -258,9 +388,9 @@ public class FancyCam : MonoBehaviour {
         {
             fancyText += "{" + o.GetComponent<FancyObject>().Serialize() + "}";
         }
-        if (System.IO.File.Exists(path))
+        if (System.IO.File.Exists(localPath + map.file + fileExt))
         {
-            System.IO.File.Delete(path);
+            System.IO.File.Delete(localPath + map.file + fileExt);
         }
         return fancyText;
     }
@@ -307,8 +437,11 @@ public class FancyCam : MonoBehaviour {
             Color ogColor = text.color;
             text.color = new Color(1 - ogColor.r, 1 - ogColor.g, 1 - ogColor.b);
             yield return new WaitForSeconds(0.2f);
-            text.color = ogColor;
-            clickAniming = false;
+            if (text && text != null)
+            {
+                text.color = ogColor;
+                clickAniming = false;
+            }
         }
     }
 }

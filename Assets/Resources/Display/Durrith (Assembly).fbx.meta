@@ -1,0 +1,1107 @@
+fileFormatVersion: 2
+guid: 3576a54b989974345920266a9ec1db9a
+timeCreated: 1667399007
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: 21459_Saxophone_V1
+    100002: abd_muscle_01_H_L
+    100004: abd_muscle_01_H_R
+    100006: abd_muscle_01_L
+    100008: abd_muscle_01_L_end
+    100010: abd_muscle_01_R
+    100012: abd_muscle_01_R_end
+    100014: abd_muscle_01_T_L
+    100016: abd_muscle_01_T_L_end
+    100018: abd_muscle_01_T_R
+    100020: abd_muscle_01_T_R_end
+    100022: bcs_muscle_01_H_L
+    100024: bcs_muscle_01_H_R
+    100026: bcs_muscle_01_L
+    100028: bcs_muscle_01_L_end
+    100030: bcs_muscle_01_R
+    100032: bcs_muscle_01_R_end
+    100034: bcs_muscle_01_T_L
+    100036: bcs_muscle_01_T_L_end
+    100038: bcs_muscle_01_T_R
+    100040: bcs_muscle_01_T_R_end
+    100042: BezierCurve
+    100044: bk_muscle_02_H_L
+    100046: bk_muscle_02_H_R
+    100048: bk_muscle_02_L
+    100050: bk_muscle_02_L_end
+    100052: bk_muscle_02_R
+    100054: bk_muscle_02_R_end
+    100056: bk_muscle_02_T_L
+    100058: bk_muscle_02_T_L_end
+    100060: bk_muscle_02_T_R
+    100062: bk_muscle_02_T_R_end
+    100064: Bone
+    100066: Bone.001
+    100068: Bone.002
+    100070: Bone.003
+    100072: Bone.004
+    100074: Bone.005
+    100076: Bone.006
+    100078: Bone.007
+    100080: Bone.008
+    100082: Bone.009
+    100084: Bone.010
+    100086: Bone.010_end
+    100088: breast_L
+    100090: breast_L_end
+    100092: breast_R
+    100094: breast_R_end
+    100096: calf_L
+    100098: calf_R
+    100100: clavicle_L
+    100102: clavicle_R
+    100104: coat
+    100106: coat.001
+    100108: Cube
+    100110: Cube.001
+    100112: Cube.002
+    100114: Dragon Ornament2
+    100116: //RootNode
+    100118: Field
+    100120: foot_L
+    100122: foot_R
+    100124: glt_muscle_02_H_L
+    100126: glt_muscle_02_H_R
+    100128: glt_muscle_02_L
+    100130: glt_muscle_02_L_end
+    100132: glt_muscle_02_R
+    100134: glt_muscle_02_R_end
+    100136: glt_muscle_02_T_L
+    100138: glt_muscle_02_T_L_end
+    100140: glt_muscle_02_T_R
+    100142: glt_muscle_02_T_R_end
+    100144: hand_L
+    100146: hand_R
+    100148: head
+    100150: index00_L
+    100152: index00_R
+    100154: index01_L
+    100156: index01_R
+    100158: index02_L
+    100160: index02_R
+    100162: index03_L
+    100164: index03_L_end
+    100166: index03_R
+    100168: index03_R_end
+    100170: left
+    100172: left 1
+    100174: left 1_end
+    100176: left 2
+    100178: left 2_end
+    100180: left 3
+    100182: left 3_end
+    100184: left 4
+    100186: left 4_end
+    100188: left mid
+    100190: left out
+    100192: left out_end
+    100194: left_end
+    100196: lgs_muscle_01_H_L
+    100198: lgs_muscle_01_H_R
+    100200: lgs_muscle_01_L
+    100202: lgs_muscle_01_L_end
+    100204: lgs_muscle_01_R
+    100206: lgs_muscle_01_R_end
+    100208: lgs_muscle_01_T_L
+    100210: lgs_muscle_01_T_L_end
+    100212: lgs_muscle_01_T_R
+    100214: lgs_muscle_01_T_R_end
+    100216: lgs_muscle_02_H_L
+    100218: lgs_muscle_02_H_R
+    100220: lgs_muscle_02_L
+    100222: lgs_muscle_02_L_end
+    100224: lgs_muscle_02_R
+    100226: lgs_muscle_02_R_end
+    100228: lgs_muscle_02_T_L
+    100230: lgs_muscle_02_T_L_end
+    100232: lgs_muscle_02_T_R
+    100234: lgs_muscle_02_T_R_end
+    100236: lgs_muscle_03_H_L
+    100238: lgs_muscle_03_H_R
+    100240: lgs_muscle_03_L
+    100242: lgs_muscle_03_L_end
+    100244: lgs_muscle_03_R
+    100246: lgs_muscle_03_R_end
+    100248: lgs_muscle_03_T_L
+    100250: lgs_muscle_03_T_L_end
+    100252: lgs_muscle_03_T_R
+    100254: lgs_muscle_03_T_R_end
+    100256: lgs_muscle_04_H_L
+    100258: lgs_muscle_04_H_R
+    100260: lgs_muscle_04_L
+    100262: lgs_muscle_04_L_end
+    100264: lgs_muscle_04_R
+    100266: lgs_muscle_04_R_end
+    100268: lgs_muscle_04_T_L
+    100270: lgs_muscle_04_T_L_end
+    100272: lgs_muscle_04_T_R
+    100274: lgs_muscle_04_T_R_end
+    100276: lgs_muscle_05_H_L
+    100278: lgs_muscle_05_H_R
+    100280: lgs_muscle_05_L
+    100282: lgs_muscle_05_L_end
+    100284: lgs_muscle_05_R
+    100286: lgs_muscle_05_R_end
+    100288: lgs_muscle_05_T_L
+    100290: lgs_muscle_05_T_L_end
+    100292: lgs_muscle_05_T_R
+    100294: lgs_muscle_05_T_R_end
+    100296: lowerarm_L
+    100298: lowerarm_R
+    100300: lwrl_muscle_01_H_L
+    100302: lwrl_muscle_01_H_R
+    100304: lwrl_muscle_01_L
+    100306: lwrl_muscle_01_L_end
+    100308: lwrl_muscle_01_R
+    100310: lwrl_muscle_01_R_end
+    100312: lwrl_muscle_01_T_L
+    100314: lwrl_muscle_01_T_L_end
+    100316: lwrl_muscle_01_T_R
+    100318: lwrl_muscle_01_T_R_end
+    100320: lwrl_muscle_02_H_L
+    100322: lwrl_muscle_02_H_R
+    100324: lwrl_muscle_02_L
+    100326: lwrl_muscle_02_L_end
+    100328: lwrl_muscle_02_R
+    100330: lwrl_muscle_02_R_end
+    100332: lwrl_muscle_02_T_L
+    100334: lwrl_muscle_02_T_L_end
+    100336: lwrl_muscle_02_T_R
+    100338: lwrl_muscle_02_T_R_end
+    100340: lwrl_muscle_03_H_L
+    100342: lwrl_muscle_03_H_R
+    100344: lwrl_muscle_03_L
+    100346: lwrl_muscle_03_L_end
+    100348: lwrl_muscle_03_R
+    100350: lwrl_muscle_03_R_end
+    100352: lwrl_muscle_03_T_L
+    100354: lwrl_muscle_03_T_L_end
+    100356: lwrl_muscle_03_T_R
+    100358: lwrl_muscle_03_T_R_end
+    100360: lwrl_muscle_04_H_L
+    100362: lwrl_muscle_04_H_R
+    100364: lwrl_muscle_04_L
+    100366: lwrl_muscle_04_L_end
+    100368: lwrl_muscle_04_R
+    100370: lwrl_muscle_04_R_end
+    100372: lwrl_muscle_04_T_L
+    100374: lwrl_muscle_04_T_L_end
+    100376: lwrl_muscle_04_T_R
+    100378: lwrl_muscle_04_T_R_end
+    100380: lwrm_muscle_01_H_L
+    100382: lwrm_muscle_01_H_R
+    100384: lwrm_muscle_01_L
+    100386: lwrm_muscle_01_L_end
+    100388: lwrm_muscle_01_R
+    100390: lwrm_muscle_01_R_end
+    100392: lwrm_muscle_01_T_L
+    100394: lwrm_muscle_01_T_L_end
+    100396: lwrm_muscle_01_T_R
+    100398: lwrm_muscle_01_T_R_end
+    100400: lwrm_muscle_02_H_L
+    100402: lwrm_muscle_02_H_R
+    100404: lwrm_muscle_02_L
+    100406: lwrm_muscle_02_L_end
+    100408: lwrm_muscle_02_R
+    100410: lwrm_muscle_02_R_end
+    100412: lwrm_muscle_02_T_L
+    100414: lwrm_muscle_02_T_L_end
+    100416: lwrm_muscle_02_T_R
+    100418: lwrm_muscle_02_T_R_end
+    100420: lwrm_muscle_03_H_L
+    100422: lwrm_muscle_03_H_R
+    100424: lwrm_muscle_03_L
+    100426: lwrm_muscle_03_L_end
+    100428: lwrm_muscle_03_R
+    100430: lwrm_muscle_03_R_end
+    100432: lwrm_muscle_03_T_L
+    100434: lwrm_muscle_03_T_L_end
+    100436: lwrm_muscle_03_T_R
+    100438: lwrm_muscle_03_T_R_end
+    100440: lwrm_muscle_04_H_L
+    100442: lwrm_muscle_04_H_R
+    100444: lwrm_muscle_04_L
+    100446: lwrm_muscle_04_L_end
+    100448: lwrm_muscle_04_R
+    100450: lwrm_muscle_04_R_end
+    100452: lwrm_muscle_04_T_L
+    100454: lwrm_muscle_04_T_L_end
+    100456: lwrm_muscle_04_T_R
+    100458: lwrm_muscle_04_T_R_end
+    100460: m_af01
+    100462: m_af01_skeleton
+    100464: middle00_L
+    100466: middle00_R
+    100468: middle01_L
+    100470: middle01_R
+    100472: middle02_L
+    100474: middle02_R
+    100476: middle03_L
+    100478: middle03_L_end
+    100480: middle03_R
+    100482: middle03_R_end
+    100484: neck
+    100486: nk_muscle_01_H_L
+    100488: nk_muscle_01_H_R
+    100490: nk_muscle_01_L
+    100492: nk_muscle_01_L_end
+    100494: nk_muscle_01_R
+    100496: nk_muscle_01_R_end
+    100498: nk_muscle_01_T_L
+    100500: nk_muscle_01_T_L_end
+    100502: nk_muscle_01_T_R
+    100504: nk_muscle_01_T_R_end
+    100506: nk_muscle_02_H_L
+    100508: nk_muscle_02_H_R
+    100510: nk_muscle_02_L
+    100512: nk_muscle_02_L_end
+    100514: nk_muscle_02_R
+    100516: nk_muscle_02_R_end
+    100518: nk_muscle_02_T_L
+    100520: nk_muscle_02_T_L_end
+    100522: nk_muscle_02_T_R
+    100524: nk_muscle_02_T_R_end
+    100526: nk_muscle_03
+    100528: nk_muscle_03_end
+    100530: nk_muscle_03_H
+    100532: nk_muscle_03_T
+    100534: nk_muscle_03_T_end
+    100536: nk_muscle_04
+    100538: nk_muscle_04_end
+    100540: nk_muscle_04_H
+    100542: nk_muscle_04_T
+    100544: nk_muscle_04_T_end
+    100546: pants
+    100548: pct_muscle_01_H_L
+    100550: pct_muscle_01_H_R
+    100552: pct_muscle_01_L
+    100554: pct_muscle_01_L_end
+    100556: pct_muscle_01_R
+    100558: pct_muscle_01_R_end
+    100560: pct_muscle_01_T_L
+    100562: pct_muscle_01_T_L_end
+    100564: pct_muscle_01_T_R
+    100566: pct_muscle_01_T_R_end
+    100568: pelvis
+    100570: pinky00_L
+    100572: pinky00_R
+    100574: pinky01_L
+    100576: pinky01_R
+    100578: pinky02_L
+    100580: pinky02_R
+    100582: pinky03_L
+    100584: pinky03_L_end
+    100586: pinky03_R
+    100588: pinky03_R_end
+    100590: Pirate Boots5294b53dbb46dab3a7dd431ded74cab7-2 Boots
+    100592: right
+    100594: right 1
+    100596: right 1_end
+    100598: right 2
+    100600: right 2_end
+    100602: right 3
+    100604: right 3_end
+    100606: right 4
+    100608: right 4_end
+    100610: right mid
+    100612: right out
+    100614: right out_end
+    100616: right_end
+    100618: ring00_L
+    100620: ring00_R
+    100622: ring01_L
+    100624: ring01_R
+    100626: ring02_L
+    100628: ring02_R
+    100630: ring03_L
+    100632: ring03_L_end
+    100634: ring03_R
+    100636: ring03_R_end
+    100638: root
+    100640: rot_helper01_L
+    100642: rot_helper01_R
+    100644: rot_helper02_L
+    100646: rot_helper02_R
+    100648: rot_helper03_L
+    100650: rot_helper03_R
+    100652: rot_helper04_L
+    100654: rot_helper04_R
+    100656: rot_helper06_L
+    100658: rot_helper06_R
+    100660: shld_muscle01_H_L
+    100662: shld_muscle01_H_R
+    100664: shld_muscle01_L
+    100666: shld_muscle01_L_end
+    100668: shld_muscle01_R
+    100670: shld_muscle01_R_end
+    100672: shld_muscle01_T_L
+    100674: shld_muscle01_T_L_end
+    100676: shld_muscle01_T_R
+    100678: shld_muscle01_T_R_end
+    100680: shld_muscle02_H_L
+    100682: shld_muscle02_H_R
+    100684: shld_muscle02_L
+    100686: shld_muscle02_L_end
+    100688: shld_muscle02_R
+    100690: shld_muscle02_R_end
+    100692: shld_muscle02_T_L
+    100694: shld_muscle02_T_L_end
+    100696: shld_muscle02_T_R
+    100698: shld_muscle02_T_R_end
+    100700: spine01
+    100702: spine02
+    100704: spine03
+    100706: spn_muscle_01
+    100708: spn_muscle_01_end
+    100710: spn_muscle_01_H
+    100712: spn_muscle_01_T
+    100714: spn_muscle_01_T_end
+    100716: tcs_muscle_01_H_L
+    100718: tcs_muscle_01_H_R
+    100720: tcs_muscle_01_L
+    100722: tcs_muscle_01_L_end
+    100724: tcs_muscle_01_R
+    100726: tcs_muscle_01_R_end
+    100728: tcs_muscle_01_T_L
+    100730: tcs_muscle_01_T_L_end
+    100732: tcs_muscle_01_T_R
+    100734: tcs_muscle_01_T_R_end
+    100736: thigh_L
+    100738: thigh_R
+    100740: thumb01_L
+    100742: thumb01_R
+    100744: thumb02_L
+    100746: thumb02_R
+    100748: thumb03_L
+    100750: thumb03_L_end
+    100752: thumb03_R
+    100754: thumb03_R_end
+    100756: toes_L
+    100758: toes_L_end
+    100760: toes_R
+    100762: toes_R_end
+    100764: top left mid
+    100766: top left mid 1
+    100768: top left out
+    100770: top left out 1
+    100772: top left out 1_end
+    100774: top left out_end
+    100776: top right mid
+    100778: top right mid 1
+    100780: top right out
+    100782: top right out 1
+    100784: top right out 1_end
+    100786: top right out_end
+    100788: Tricorn_Hat
+    100790: upperarm_L
+    100792: upperarm_R
+    100794: Wing Armature
+    100796: Wing Fabric
+    100798: Wing Structure
+    400000: 21459_Saxophone_V1
+    400002: abd_muscle_01_H_L
+    400004: abd_muscle_01_H_R
+    400006: abd_muscle_01_L
+    400008: abd_muscle_01_L_end
+    400010: abd_muscle_01_R
+    400012: abd_muscle_01_R_end
+    400014: abd_muscle_01_T_L
+    400016: abd_muscle_01_T_L_end
+    400018: abd_muscle_01_T_R
+    400020: abd_muscle_01_T_R_end
+    400022: bcs_muscle_01_H_L
+    400024: bcs_muscle_01_H_R
+    400026: bcs_muscle_01_L
+    400028: bcs_muscle_01_L_end
+    400030: bcs_muscle_01_R
+    400032: bcs_muscle_01_R_end
+    400034: bcs_muscle_01_T_L
+    400036: bcs_muscle_01_T_L_end
+    400038: bcs_muscle_01_T_R
+    400040: bcs_muscle_01_T_R_end
+    400042: BezierCurve
+    400044: bk_muscle_02_H_L
+    400046: bk_muscle_02_H_R
+    400048: bk_muscle_02_L
+    400050: bk_muscle_02_L_end
+    400052: bk_muscle_02_R
+    400054: bk_muscle_02_R_end
+    400056: bk_muscle_02_T_L
+    400058: bk_muscle_02_T_L_end
+    400060: bk_muscle_02_T_R
+    400062: bk_muscle_02_T_R_end
+    400064: Bone
+    400066: Bone.001
+    400068: Bone.002
+    400070: Bone.003
+    400072: Bone.004
+    400074: Bone.005
+    400076: Bone.006
+    400078: Bone.007
+    400080: Bone.008
+    400082: Bone.009
+    400084: Bone.010
+    400086: Bone.010_end
+    400088: breast_L
+    400090: breast_L_end
+    400092: breast_R
+    400094: breast_R_end
+    400096: calf_L
+    400098: calf_R
+    400100: clavicle_L
+    400102: clavicle_R
+    400104: coat
+    400106: coat.001
+    400108: Cube
+    400110: Cube.001
+    400112: Cube.002
+    400114: Dragon Ornament2
+    400116: //RootNode
+    400118: Field
+    400120: foot_L
+    400122: foot_R
+    400124: glt_muscle_02_H_L
+    400126: glt_muscle_02_H_R
+    400128: glt_muscle_02_L
+    400130: glt_muscle_02_L_end
+    400132: glt_muscle_02_R
+    400134: glt_muscle_02_R_end
+    400136: glt_muscle_02_T_L
+    400138: glt_muscle_02_T_L_end
+    400140: glt_muscle_02_T_R
+    400142: glt_muscle_02_T_R_end
+    400144: hand_L
+    400146: hand_R
+    400148: head
+    400150: index00_L
+    400152: index00_R
+    400154: index01_L
+    400156: index01_R
+    400158: index02_L
+    400160: index02_R
+    400162: index03_L
+    400164: index03_L_end
+    400166: index03_R
+    400168: index03_R_end
+    400170: left
+    400172: left 1
+    400174: left 1_end
+    400176: left 2
+    400178: left 2_end
+    400180: left 3
+    400182: left 3_end
+    400184: left 4
+    400186: left 4_end
+    400188: left mid
+    400190: left out
+    400192: left out_end
+    400194: left_end
+    400196: lgs_muscle_01_H_L
+    400198: lgs_muscle_01_H_R
+    400200: lgs_muscle_01_L
+    400202: lgs_muscle_01_L_end
+    400204: lgs_muscle_01_R
+    400206: lgs_muscle_01_R_end
+    400208: lgs_muscle_01_T_L
+    400210: lgs_muscle_01_T_L_end
+    400212: lgs_muscle_01_T_R
+    400214: lgs_muscle_01_T_R_end
+    400216: lgs_muscle_02_H_L
+    400218: lgs_muscle_02_H_R
+    400220: lgs_muscle_02_L
+    400222: lgs_muscle_02_L_end
+    400224: lgs_muscle_02_R
+    400226: lgs_muscle_02_R_end
+    400228: lgs_muscle_02_T_L
+    400230: lgs_muscle_02_T_L_end
+    400232: lgs_muscle_02_T_R
+    400234: lgs_muscle_02_T_R_end
+    400236: lgs_muscle_03_H_L
+    400238: lgs_muscle_03_H_R
+    400240: lgs_muscle_03_L
+    400242: lgs_muscle_03_L_end
+    400244: lgs_muscle_03_R
+    400246: lgs_muscle_03_R_end
+    400248: lgs_muscle_03_T_L
+    400250: lgs_muscle_03_T_L_end
+    400252: lgs_muscle_03_T_R
+    400254: lgs_muscle_03_T_R_end
+    400256: lgs_muscle_04_H_L
+    400258: lgs_muscle_04_H_R
+    400260: lgs_muscle_04_L
+    400262: lgs_muscle_04_L_end
+    400264: lgs_muscle_04_R
+    400266: lgs_muscle_04_R_end
+    400268: lgs_muscle_04_T_L
+    400270: lgs_muscle_04_T_L_end
+    400272: lgs_muscle_04_T_R
+    400274: lgs_muscle_04_T_R_end
+    400276: lgs_muscle_05_H_L
+    400278: lgs_muscle_05_H_R
+    400280: lgs_muscle_05_L
+    400282: lgs_muscle_05_L_end
+    400284: lgs_muscle_05_R
+    400286: lgs_muscle_05_R_end
+    400288: lgs_muscle_05_T_L
+    400290: lgs_muscle_05_T_L_end
+    400292: lgs_muscle_05_T_R
+    400294: lgs_muscle_05_T_R_end
+    400296: lowerarm_L
+    400298: lowerarm_R
+    400300: lwrl_muscle_01_H_L
+    400302: lwrl_muscle_01_H_R
+    400304: lwrl_muscle_01_L
+    400306: lwrl_muscle_01_L_end
+    400308: lwrl_muscle_01_R
+    400310: lwrl_muscle_01_R_end
+    400312: lwrl_muscle_01_T_L
+    400314: lwrl_muscle_01_T_L_end
+    400316: lwrl_muscle_01_T_R
+    400318: lwrl_muscle_01_T_R_end
+    400320: lwrl_muscle_02_H_L
+    400322: lwrl_muscle_02_H_R
+    400324: lwrl_muscle_02_L
+    400326: lwrl_muscle_02_L_end
+    400328: lwrl_muscle_02_R
+    400330: lwrl_muscle_02_R_end
+    400332: lwrl_muscle_02_T_L
+    400334: lwrl_muscle_02_T_L_end
+    400336: lwrl_muscle_02_T_R
+    400338: lwrl_muscle_02_T_R_end
+    400340: lwrl_muscle_03_H_L
+    400342: lwrl_muscle_03_H_R
+    400344: lwrl_muscle_03_L
+    400346: lwrl_muscle_03_L_end
+    400348: lwrl_muscle_03_R
+    400350: lwrl_muscle_03_R_end
+    400352: lwrl_muscle_03_T_L
+    400354: lwrl_muscle_03_T_L_end
+    400356: lwrl_muscle_03_T_R
+    400358: lwrl_muscle_03_T_R_end
+    400360: lwrl_muscle_04_H_L
+    400362: lwrl_muscle_04_H_R
+    400364: lwrl_muscle_04_L
+    400366: lwrl_muscle_04_L_end
+    400368: lwrl_muscle_04_R
+    400370: lwrl_muscle_04_R_end
+    400372: lwrl_muscle_04_T_L
+    400374: lwrl_muscle_04_T_L_end
+    400376: lwrl_muscle_04_T_R
+    400378: lwrl_muscle_04_T_R_end
+    400380: lwrm_muscle_01_H_L
+    400382: lwrm_muscle_01_H_R
+    400384: lwrm_muscle_01_L
+    400386: lwrm_muscle_01_L_end
+    400388: lwrm_muscle_01_R
+    400390: lwrm_muscle_01_R_end
+    400392: lwrm_muscle_01_T_L
+    400394: lwrm_muscle_01_T_L_end
+    400396: lwrm_muscle_01_T_R
+    400398: lwrm_muscle_01_T_R_end
+    400400: lwrm_muscle_02_H_L
+    400402: lwrm_muscle_02_H_R
+    400404: lwrm_muscle_02_L
+    400406: lwrm_muscle_02_L_end
+    400408: lwrm_muscle_02_R
+    400410: lwrm_muscle_02_R_end
+    400412: lwrm_muscle_02_T_L
+    400414: lwrm_muscle_02_T_L_end
+    400416: lwrm_muscle_02_T_R
+    400418: lwrm_muscle_02_T_R_end
+    400420: lwrm_muscle_03_H_L
+    400422: lwrm_muscle_03_H_R
+    400424: lwrm_muscle_03_L
+    400426: lwrm_muscle_03_L_end
+    400428: lwrm_muscle_03_R
+    400430: lwrm_muscle_03_R_end
+    400432: lwrm_muscle_03_T_L
+    400434: lwrm_muscle_03_T_L_end
+    400436: lwrm_muscle_03_T_R
+    400438: lwrm_muscle_03_T_R_end
+    400440: lwrm_muscle_04_H_L
+    400442: lwrm_muscle_04_H_R
+    400444: lwrm_muscle_04_L
+    400446: lwrm_muscle_04_L_end
+    400448: lwrm_muscle_04_R
+    400450: lwrm_muscle_04_R_end
+    400452: lwrm_muscle_04_T_L
+    400454: lwrm_muscle_04_T_L_end
+    400456: lwrm_muscle_04_T_R
+    400458: lwrm_muscle_04_T_R_end
+    400460: m_af01
+    400462: m_af01_skeleton
+    400464: middle00_L
+    400466: middle00_R
+    400468: middle01_L
+    400470: middle01_R
+    400472: middle02_L
+    400474: middle02_R
+    400476: middle03_L
+    400478: middle03_L_end
+    400480: middle03_R
+    400482: middle03_R_end
+    400484: neck
+    400486: nk_muscle_01_H_L
+    400488: nk_muscle_01_H_R
+    400490: nk_muscle_01_L
+    400492: nk_muscle_01_L_end
+    400494: nk_muscle_01_R
+    400496: nk_muscle_01_R_end
+    400498: nk_muscle_01_T_L
+    400500: nk_muscle_01_T_L_end
+    400502: nk_muscle_01_T_R
+    400504: nk_muscle_01_T_R_end
+    400506: nk_muscle_02_H_L
+    400508: nk_muscle_02_H_R
+    400510: nk_muscle_02_L
+    400512: nk_muscle_02_L_end
+    400514: nk_muscle_02_R
+    400516: nk_muscle_02_R_end
+    400518: nk_muscle_02_T_L
+    400520: nk_muscle_02_T_L_end
+    400522: nk_muscle_02_T_R
+    400524: nk_muscle_02_T_R_end
+    400526: nk_muscle_03
+    400528: nk_muscle_03_end
+    400530: nk_muscle_03_H
+    400532: nk_muscle_03_T
+    400534: nk_muscle_03_T_end
+    400536: nk_muscle_04
+    400538: nk_muscle_04_end
+    400540: nk_muscle_04_H
+    400542: nk_muscle_04_T
+    400544: nk_muscle_04_T_end
+    400546: pants
+    400548: pct_muscle_01_H_L
+    400550: pct_muscle_01_H_R
+    400552: pct_muscle_01_L
+    400554: pct_muscle_01_L_end
+    400556: pct_muscle_01_R
+    400558: pct_muscle_01_R_end
+    400560: pct_muscle_01_T_L
+    400562: pct_muscle_01_T_L_end
+    400564: pct_muscle_01_T_R
+    400566: pct_muscle_01_T_R_end
+    400568: pelvis
+    400570: pinky00_L
+    400572: pinky00_R
+    400574: pinky01_L
+    400576: pinky01_R
+    400578: pinky02_L
+    400580: pinky02_R
+    400582: pinky03_L
+    400584: pinky03_L_end
+    400586: pinky03_R
+    400588: pinky03_R_end
+    400590: Pirate Boots5294b53dbb46dab3a7dd431ded74cab7-2 Boots
+    400592: right
+    400594: right 1
+    400596: right 1_end
+    400598: right 2
+    400600: right 2_end
+    400602: right 3
+    400604: right 3_end
+    400606: right 4
+    400608: right 4_end
+    400610: right mid
+    400612: right out
+    400614: right out_end
+    400616: right_end
+    400618: ring00_L
+    400620: ring00_R
+    400622: ring01_L
+    400624: ring01_R
+    400626: ring02_L
+    400628: ring02_R
+    400630: ring03_L
+    400632: ring03_L_end
+    400634: ring03_R
+    400636: ring03_R_end
+    400638: root
+    400640: rot_helper01_L
+    400642: rot_helper01_R
+    400644: rot_helper02_L
+    400646: rot_helper02_R
+    400648: rot_helper03_L
+    400650: rot_helper03_R
+    400652: rot_helper04_L
+    400654: rot_helper04_R
+    400656: rot_helper06_L
+    400658: rot_helper06_R
+    400660: shld_muscle01_H_L
+    400662: shld_muscle01_H_R
+    400664: shld_muscle01_L
+    400666: shld_muscle01_L_end
+    400668: shld_muscle01_R
+    400670: shld_muscle01_R_end
+    400672: shld_muscle01_T_L
+    400674: shld_muscle01_T_L_end
+    400676: shld_muscle01_T_R
+    400678: shld_muscle01_T_R_end
+    400680: shld_muscle02_H_L
+    400682: shld_muscle02_H_R
+    400684: shld_muscle02_L
+    400686: shld_muscle02_L_end
+    400688: shld_muscle02_R
+    400690: shld_muscle02_R_end
+    400692: shld_muscle02_T_L
+    400694: shld_muscle02_T_L_end
+    400696: shld_muscle02_T_R
+    400698: shld_muscle02_T_R_end
+    400700: spine01
+    400702: spine02
+    400704: spine03
+    400706: spn_muscle_01
+    400708: spn_muscle_01_end
+    400710: spn_muscle_01_H
+    400712: spn_muscle_01_T
+    400714: spn_muscle_01_T_end
+    400716: tcs_muscle_01_H_L
+    400718: tcs_muscle_01_H_R
+    400720: tcs_muscle_01_L
+    400722: tcs_muscle_01_L_end
+    400724: tcs_muscle_01_R
+    400726: tcs_muscle_01_R_end
+    400728: tcs_muscle_01_T_L
+    400730: tcs_muscle_01_T_L_end
+    400732: tcs_muscle_01_T_R
+    400734: tcs_muscle_01_T_R_end
+    400736: thigh_L
+    400738: thigh_R
+    400740: thumb01_L
+    400742: thumb01_R
+    400744: thumb02_L
+    400746: thumb02_R
+    400748: thumb03_L
+    400750: thumb03_L_end
+    400752: thumb03_R
+    400754: thumb03_R_end
+    400756: toes_L
+    400758: toes_L_end
+    400760: toes_R
+    400762: toes_R_end
+    400764: top left mid
+    400766: top left mid 1
+    400768: top left out
+    400770: top left out 1
+    400772: top left out 1_end
+    400774: top left out_end
+    400776: top right mid
+    400778: top right mid 1
+    400780: top right out
+    400782: top right out 1
+    400784: top right out 1_end
+    400786: top right out_end
+    400788: Tricorn_Hat
+    400790: upperarm_L
+    400792: upperarm_R
+    400794: Wing Armature
+    400796: Wing Fabric
+    400798: Wing Structure
+    2100000: saxophone
+    2100002: sax2
+    2100004: pants
+    2100006: Material.013
+    2100008: Material.012
+    2100010: Hilt Leather
+    2100012: Hilt Gold
+    2100014: Blade Silver
+    2100016: Blade Black
+    2100018: MBlab_human_skin
+    2100020: MBlab_human_eyes
+    2100022: MBlab_pupil
+    2100024: MBlab_cornea
+    2100026: MBlab_generic
+    2100028: MBlab_fur
+    2100030: MBlab_human_teeth
+    2100032: Durrith Head
+    2100034: Material.008
+    2100036: Material.007
+    2100038: Eye Glow
+    2100040: Tricorn_Hat
+    2100042: Material.006
+    2100044: boots
+    2100046: Material.017
+    2100048: Material.018
+    2100050: Material
+    2100052: Coat collar
+    2100054: coat
+    2100056: coat wings
+    2100058: belt
+    2300000: 21459_Saxophone_V1
+    2300002: BezierCurve
+    2300004: coat
+    2300006: coat.001
+    2300008: Cube
+    2300010: Cube.001
+    2300012: Cube.002
+    2300014: Dragon Ornament2
+    2300016: pants
+    2300018: Pirate Boots5294b53dbb46dab3a7dd431ded74cab7-2 Boots
+    2300020: Tricorn_Hat
+    3300000: 21459_Saxophone_V1
+    3300002: BezierCurve
+    3300004: coat
+    3300006: coat.001
+    3300008: Cube
+    3300010: Cube.001
+    3300012: Cube.002
+    3300014: Dragon Ornament2
+    3300016: pants
+    3300018: Pirate Boots5294b53dbb46dab3a7dd431ded74cab7-2 Boots
+    3300020: Tricorn_Hat
+    4300000: 21459_Saxophone_V1
+    4300002: pants
+    4300004: Wing Structure
+    4300006: BezierCurve
+    4300008: Cube.001
+    4300010: m_af01
+    4300012: Cube
+    4300014: Tricorn_Hat
+    4300016: Cube.002
+    4300018: Pirate Boots5294b53dbb46dab3a7dd431ded74cab7-2 Boots
+    4300020: Dragon Ornament2
+    4300022: Wing Fabric
+    4300024: coat
+    4300026: coat.001
+    9500000: //RootNode
+    13700000: m_af01
+    13700002: Wing Fabric
+    13700004: Wing Structure
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blade Black
+    second: {fileID: 2100000, guid: d414101e03c006a4280b22eb6d54b76f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Blade Silver
+    second: {fileID: 2100000, guid: 82a40f9c857894447b6e33bc5557eace, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Coat collar
+    second: {fileID: 2100000, guid: b98646ffd095ddb41857ee23709b350a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Durrith Head
+    second: {fileID: 2100000, guid: 08e925dcaa9f6ab449ea5a42cc56c6f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eye Glow
+    second: {fileID: 2100000, guid: d4e3b161056507d429861f8ae9d235a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hilt Gold
+    second: {fileID: 2100000, guid: 70fe19e87013fd348a10e28dc14d300d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hilt Leather
+    second: {fileID: 2100000, guid: dfea010e3fa1b8e4597ad59b7fa38efd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MBlab_cornea
+    second: {fileID: 2100000, guid: 19b9be971b51218439d46f5d8a47ca1a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MBlab_fur
+    second: {fileID: 2100000, guid: 01b1b6878dc13d84da308e3b0d0ec1fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MBlab_generic
+    second: {fileID: 2100000, guid: 0b7233c332d1d8340871b358e2d20ab7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MBlab_human_eyes
+    second: {fileID: 2100000, guid: cbdbb26e5c78d9c47849d472f3026080, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MBlab_human_skin
+    second: {fileID: 2100000, guid: 9fe584e0351e8cf48a75f840dcb1e522, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MBlab_human_teeth
+    second: {fileID: 2100000, guid: 8704ada8bf6a6764791c535f7a744535, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MBlab_pupil
+    second: {fileID: 2100000, guid: 0884caf427ee2014c8096b2eb9e973c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: f618900ddf2eb7a4babe5c3c87fa8a7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: 0378c6f0ae03fb14190800577bce969f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: 6975d87855064e64287fe7cd3c85efc1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.008
+    second: {fileID: 2100000, guid: ab83adc10ea9dae499e04b74d7c40bed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.012
+    second: {fileID: 2100000, guid: 3260d365ed44a6b4d8b08caacb464b62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.013
+    second: {fileID: 2100000, guid: b6c3ec594da26c8489ecbf7e54bea2a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.017
+    second: {fileID: 2100000, guid: 1bc4beaf98dd6dd4b955472f1787d472, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.018
+    second: {fileID: 2100000, guid: 95602ee4daf5c914fad2b284a001628d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tricorn_Hat
+    second: {fileID: 2100000, guid: 64f9f4fc8a228e84c86fe59c7c83fd8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: belt
+    second: {fileID: 2100000, guid: d7e3357a935d18346b4184526df34675, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boots
+    second: {fileID: 2100000, guid: 1564209f6a9637b4b9cbfdfa06674b8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: coat
+    second: {fileID: 2100000, guid: db25632cce4b6d145b262c7881ba84e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: coat wings
+    second: {fileID: 2100000, guid: 77ddf0328c023f9489703f7b0f2b836f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pants
+    second: {fileID: 2100000, guid: bfbb12edd0ae93144a175a9f059b92aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sax2
+    second: {fileID: 2100000, guid: bef6762191ed4504c91768f078c9a8f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: saxophone
+    second: {fileID: 2100000, guid: d40cdb5476d1ed14aa7948a0963f45c4, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.3233333
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

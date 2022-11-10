@@ -4,6 +4,18 @@
 
 A subtle spin-off of the Roll20 virtual tabletop
 
+## Controls
+
+- WASD to move
+- Q and E to go up and down
+- Right Click to rotate the camera
+- F to toggle flashlight
+- click on a character to edit (the character name should show up in the top left corner, only DMs can edit non-player characters)
+- Hold Left Alt or Middle Mouse Button when pressing WASD in order to move the currently selected character
+- Click "Pull" to set your client equal to the server
+- Click "Push" to set the server equal to your client
+- If Track Selected = true, your camera will move with your selected character
+
 ## Current Features:
 
 - 3d maps
