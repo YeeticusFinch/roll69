@@ -32,5 +32,7 @@ A subtle spin-off of the Roll20 virtual tabletop
 
 - 3d area effect selectors
 - 3D dice roller
+- Fix the goddamn bugs
+- Soundbites that play a sound whenever you click on a token (ie. Kool Aid Man says "Oh Yeah")
 
 ![image](https://user-images.githubusercontent.com/50182007/201145007-714c0c44-c99b-453c-8972-9bcda18faf11.png)
