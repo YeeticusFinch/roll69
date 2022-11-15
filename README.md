@@ -15,6 +15,7 @@ A subtle spin-off of the Roll20 virtual tabletop
 - Click "Pull" to set your client equal to the server
 - Click "Push" to set the server equal to your client
 - If Track Selected = true, your camera will move with your selected character
+- Press R to revert a token's movement by 5 feet. Repeatedly press R to completely revert a token's movement
 
 ## Current Features:
 
@@ -25,10 +26,13 @@ A subtle spin-off of the Roll20 virtual tabletop
 - DM layer (hidden from players)
 - Saves online in the cloud
 - select between different maps
+- Movement measurement (in feet)
 
 ## Planned Features:
 
 - 3d area effect selectors
 - 3D dice roller
+- Fix the goddamn bugs
+- Soundbites that play a sound whenever you click on a token (ie. Kool Aid Man says "Oh Yeah")
 
 ![image](https://user-images.githubusercontent.com/50182007/201145007-714c0c44-c99b-453c-8972-9bcda18faf11.png)
