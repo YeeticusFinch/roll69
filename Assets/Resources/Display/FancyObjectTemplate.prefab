@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135279769241237304}
   - component: {fileID: 212298599738405624}
   m_Layer: 0
-  m_Name: FancyObjectTemplate
+  m_Name: Stalin
   m_TagString: FancyObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1993789265941036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -11.83, y: 12.84, z: -41.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,20 +53,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066e0518e09fc1e498c2ca7f025e83b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 
+  title: Stalin
   flat: 0
   owner: 
   hp: 0
   ac: 0
-  id: -1
-  timestamp: 0
-  sprite0: 
-  sprite1: 
-  sprite2: 
-  sprite3: 
+  id: 1
+  timestamp: 1668107980937
+  sprite0: Display/SYDE D&D Portraits-21
+  sprite1: Display/StalinNewTokens
+  sprite2: Display/Assembly-Token-02
+  sprite3: Display/Assembly-Token-03
   sprite4: 
   sprite5: 
-  model0: 
+  model0: Display/Stalin (Acheron era)
   model1: 
   model2: 
   model3: 
@@ -74,19 +74,23 @@ MonoBehaviour:
   sprites:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 6c087f4023c7a5243b1e1d9ce179d374, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   models:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 100162, guid: 815ccdd5a9b48a34f959d0aabf12d031, type: 3}
+  - {fileID: 100116, guid: 3576a54b989974345920266a9ec1db9a, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   display: {fileID: 0}
-  currentDisplay: 0
+  currentDisplay: 2
   dm_only: 0
   hide: 0
+  feetMoved: 0
+  ojPos: {x: -11.83, y: 12.84, z: -41.35}
+  tags: []
+  pastPositions: []
 --- !u!135 &135279769241237304
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -133,13 +137,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6c087f4023c7a5243b1e1d9ce179d374, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.3333333, y: 3.3333333}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0

@@ -33,10 +33,19 @@ public class FancyObject : NetworkBehaviour
     public int currentDisplay;
     public bool dm_only = true;
     public bool hide = false;
+    public float feetMoved = 0;
+
+    public Vector3 ojPos;
+
+    public List<string> tags = new List<string>();
+
+    public List<Vector3> pastPositions = new List<Vector3>();
 
     // Start is called before the first frame update
     void Start()
     {
+        pastPositions = new List<Vector3>();
+        ojPos = transform.position;
         while (GetSprite(currentDisplay) == null && GetModel(currentDisplay - sprites.Length) == null)
         {
             currentDisplay++;
@@ -44,6 +53,42 @@ public class FancyObject : NetworkBehaviour
         }
         UpdateDisplay();
         modelEulers = Vector3.zero;
+    }
+
+    private int lastFeetMoved = -1;
+
+    public float Displace(Vector3 displacement)
+    {
+        transform.position += displacement;
+        feetMoved += displacement.magnitude * 0.91954f;
+        if ((int)feetMoved % 5 == 0 && (int)feetMoved > lastFeetMoved)
+        {
+            pastPositions.Add(transform.position);
+            lastFeetMoved = (int)feetMoved;
+        }
+        return feetMoved;
+    }
+
+    public Vector3 FallBack()
+    {
+        int newDistance = pastPositions.Count*5;
+        if (pastPositions.Count == 0)
+        {
+            Vector3 disp = transform.position - ojPos;
+            transform.position = ojPos;
+            feetMoved = 0;
+            lastFeetMoved = -1;
+            return disp;
+        }
+        else
+        {
+            Vector3 disp = transform.position - pastPositions[pastPositions.Count - 1];
+            transform.position = pastPositions[pastPositions.Count - 1];
+            pastPositions.Remove(transform.position);
+            feetMoved = pastPositions.Count * 5;
+            lastFeetMoved -= 5;
+            return disp;
+        }
     }
 
     public void UpdateDisplay()
@@ -85,8 +130,16 @@ public class FancyObject : NetworkBehaviour
             {
                 GameObject.Destroy(display);
             }
-            display = GameObject.Instantiate(GetModel(currentDisplay - sprites.Length), transform.position, Quaternion.identity);
-            display.transform.SetParent(transform);
+            GameObject fancyYeetBoyo = GameObject.Instantiate<GameObject>(GetModel(currentDisplay - sprites.Length), transform.position, Quaternion.identity);
+            try
+            {
+                //fancyYeetBoyo.transform.parent = (gameObject.transform);
+            }
+            catch (System.Exception e)
+            {
+
+            }
+            display = fancyYeetBoyo;
         }
     }
 
@@ -120,6 +173,7 @@ public class FancyObject : NetworkBehaviour
             return null;
         else if (models[n] == null)
         {
+            //Debug.Log("Getting display " + GetDisplay(sprites.Length + n));
             models[n] = Resources.Load(GetDisplay(sprites.Length + n)) as GameObject;
         }
         return models[n];
@@ -187,7 +241,9 @@ public class FancyObject : NetworkBehaviour
 
     public void Deserialize(string input)
     {
+        pastPositions = new List<Vector3>();
         int i = 0;
+        feetMoved = 0;
         model0 = null;
         model1 = null;
         model2 = null;
@@ -215,11 +271,15 @@ public class FancyObject : NetworkBehaviour
             i = input.IndexOf(';', i)+1;
             switch (sel)
             {
+                case "tag":
+                    tags.Add(val);
+                    break;
                 case "id":
                     id = val;
                     break;
                 case "name":
-                    name = val;
+                    name = val.Replace("(Clone)", "");
+                    title = val.Replace("(Clone)", "");
                     break;
                 case "flat":
                     if (System.String.Equals(val, "1"))
@@ -231,7 +291,7 @@ public class FancyObject : NetworkBehaviour
                     owner = val;
                     break;
                 case "hp":
-                    Debug.Log("HP = " + val);
+                    //Debug.Log("HP = " + val);
                     hp = int.Parse(val);
                     break;
                 case "ac":
@@ -334,14 +394,22 @@ public class FancyObject : NetworkBehaviour
                     hide = bool.Parse(val);
                     break;
             }
-            UpdateDisplay();
         }
+        UpdateDisplay();
+        ojPos = transform.position;
     }
 
     public string Serialize()
     {
+        pastPositions = new List<Vector3>();
+        feetMoved = 0;
+        string serializedTags = "";
+        foreach (string tag in tags)
+        {
+            serializedTags += ";tag:" + tag;
+        }
         return "id:" + id
-            + ";name:" + name
+            + ";name:" + name.Replace("(Clone)", "")
             + ";flat:" + (flat ? 1 : 0)
             + ";owner:" + owner
             + ";hp:" + hp
@@ -368,6 +436,7 @@ public class FancyObject : NetworkBehaviour
             + (model3 != null && model3.Length > 0 ? ";model3:" + model3 : "")
             + ";currentDisplay:" + currentDisplay
             + ";hide:" + (hide ? "true" : "false")
+            + serializedTags
             + ";";
     }
 

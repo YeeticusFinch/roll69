@@ -296,6 +296,9 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
+    <Reference Include="Renci.SshNet">
+      <HintPath>Assets/Renci.SshNet.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Users/carlf/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -317,9 +320,6 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/carlf/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
-    <Reference Include="Renci.SshNet">
-      <HintPath>Assets/Renci.SshNet.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/2017.3.0f3/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
@@ -328,6 +328,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ColorPickerTriangle\Example\example.cs" />
+    <Compile Include="Assets\ColorPickerTriangle\Scripts\ColorPickerTriangle.cs" />
     <Compile Include="Assets\Resources\_MK\MKGlow\Components\Legacy\CameraDataLegacy.cs" />
     <Compile Include="Assets\Resources\_MK\MKGlow\Components\Legacy\MKGlow.cs" />
     <Compile Include="Assets\Resources\_MK\MKGlow\Components\Legacy\SettingsLegacy.cs" />
@@ -349,9 +351,12 @@
     <Compile Include="Assets\Resources\Scripts\CarlMath.cs" />
     <Compile Include="Assets\Resources\Scripts\FancyCam.cs" />
     <Compile Include="Assets\Resources\Scripts\FancyObject.cs" />
+    <Compile Include="Assets\Resources\Scripts\Map.cs" />
+    <Compile Include="Assets\Resources\Scripts\PrivateConstants.cs" />
     <Compile Include="Assets\Resources\Scripts\SshConnection.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\ColorPickerTriangle\Shaders\VertexColor.shader" />
     <None Include="Assets\Resources\_MK\MKGlow\Shaders\Effect\MKGlowSM20.shader" />
     <None Include="Assets\Resources\_MK\MKGlow\Shaders\Effect\MKGlowSM25.shader" />
     <None Include="Assets\Resources\_MK\MKGlow\Shaders\Effect\MKGlowSM30.shader" />

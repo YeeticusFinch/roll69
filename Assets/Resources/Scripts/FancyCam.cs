@@ -9,7 +9,7 @@ public class FancyCam : MonoBehaviour {
     public float mouseSensitivity = 3f;
     bool trackSelected = false;
 
-    GameObject selected;
+    List<GameObject> selected;
     public LayerMask mask;
 
     public TextMesh trackSelectedButton;
@@ -19,6 +19,9 @@ public class FancyCam : MonoBehaviour {
     public Light flashlight;
     public SshConnection ssh;
     public TextMesh mapSelect;
+    public TextMesh feetMovedText;
+
+    public example BackgroundColorPicker;
 
     private Map map;
 
@@ -35,6 +38,7 @@ public class FancyCam : MonoBehaviour {
     // Use this for initialization
     void Start () {
         map = this.gameObject.AddComponent<Map>();
+        BackgroundColorPicker.Init(map);
 	}
 
     string prevKey = "";
@@ -83,12 +87,12 @@ public class FancyCam : MonoBehaviour {
             //GameMaster.instance.board.canMove = false;
         }
 
-        if (!dm || selected == null)
+        if (!dm || selected == null || selected.Count == 0)
         {
             hideText.text = "";
         } else
         {
-            hideText.text = "Hide = " + (selected.GetComponent<FancyObject>().hide ? "true" : "false");
+            hideText.text = "Hide = " + (selected[selected.Count-1].GetComponent<FancyObject>().hide ? "true" : "false");
         }
 
         if (Input.GetButtonDown("Flashlight") && !typeBox)
@@ -97,6 +101,20 @@ public class FancyCam : MonoBehaviour {
                 flashlight.intensity = 1;
             else
                 flashlight.intensity = 0;
+        }
+        if (Input.GetButtonDown("Reverse"))
+        {
+            Vector3 reverse = Vector3.zero;
+            foreach (GameObject s in selected)
+            {
+                reverse = s.GetComponent<FancyObject>().FallBack();
+            }
+            if (selected.Count == 1)
+            {
+                feetMovedText.text = "Feet Moved: " + (int)(selected[0].GetComponent<FancyObject>().feetMoved) + "\nFeet Displaced: " + (int)(Vector3.Distance(selected[0].GetComponent<FancyObject>().ojPos, selected[0].transform.position) * 0.91954f);
+            }
+            if (trackSelected)
+                transform.position -= reverse;
         }
         if (Input.GetButtonDown("Fire1"))
         {
@@ -111,42 +129,58 @@ public class FancyCam : MonoBehaviour {
                 }
                 if (hit.transform.GetComponent<FancyObject>() != null && (dm || !hit.transform.GetComponent<FancyObject>().dm_only))
                 {
-                    Debug.Log("Selection change");
-                    selected = hit.transform.gameObject;
-                    selectedText.text = "Selected = " + hit.transform.gameObject.GetComponent<FancyObject>().title;
+                    if (Input.GetButton("Sprint"))
+                    {
+                        selected.Add(hit.transform.gameObject);
+                        selectedText.text += (selected.Count > 1 ? "; " : "") + hit.transform.gameObject.GetComponent<FancyObject>().title;
+                        feetMovedText.text = "";
+                    } else
+                    {
+                        selected = new List<GameObject>();
+                        selected.Add(hit.transform.gameObject);
+                        selectedText.text = "Selected = " + hit.transform.gameObject.GetComponent<FancyObject>().title;
+                        feetMovedText.text = "Feet Moved: " + (int)(selected[0].GetComponent<FancyObject>().feetMoved) + "\nFeet Displaced: " + (int)(Vector3.Distance(selected[0].GetComponent<FancyObject>().ojPos, selected[0].transform.position) * 0.91954f);
+                    }
                 }
                 else if (hit.transform.gameObject.name.Equals("Change Sprite"))
                 {
-                    Debug.Log("Changing sprite of selected object");
-                    if (selected != null)
+                    //Debug.Log("Changing sprite of selected object");
+                    if (selected != null && selected.Count > 0)
                     {
-                        selected.GetComponent<FancyObject>().NextSprite();
+                        foreach(GameObject s in selected)
+                            s.GetComponent<FancyObject>().NextSprite();
                     }
                 }
                 else if (hit.transform.gameObject.name.Equals("First Person"))
                 {
-                    Debug.Log("Camera to Selected");
-                    if (selected != null)
+                    //Debug.Log("Camera to Selected");
+                    if (selected != null && selected.Count > 0)
                     {
-                        this.transform.SetPositionAndRotation(selected.transform.position, Quaternion.Euler(selected.GetComponent<FancyObject>().modelEulers));
+                        this.transform.SetPositionAndRotation(averageSelectedPosition(), Quaternion.Euler(selected[selected.Count-1].GetComponent<FancyObject>().modelEulers));
                     }
                 }
                 else if (hit.transform.gameObject.name.Equals("Selected to Camera"))
                 {
-                    Debug.Log("Selected to Camera");
-                    if (selected != null)
+                    //Debug.Log("Selected to Camera");
+                    if (selected != null && selected.Count > 0)
                     {
-                        selected.transform.SetPositionAndRotation(this.transform.position, Quaternion.Euler(selected.GetComponent<FancyObject>().modelEulers));
+                        if (selected.Count == 1)
+                        {
+                            selected[0].transform.SetPositionAndRotation(this.transform.position, Quaternion.Euler(selected[0].GetComponent<FancyObject>().modelEulers));
+                        }
+                        else
+                        {
+                            Vector3 diff = transform.position - averageSelectedPosition();
+                            foreach (GameObject s in selected)
+                                s.transform.position += diff;
+                        }
                     }
                 }
                 else if (hit.transform.gameObject.name.Equals("Track Selected"))
                 {
-                    Debug.Log("Toggle track selected object");
-                    if (selected != null)
-                    {
-                        trackSelected = !trackSelected;
-                        trackSelectedButton.text = "Track Selected = " + (trackSelected ? "true" : "false");
-                    }
+                    //Debug.Log("Toggle track selected object");
+                    trackSelected = !trackSelected;
+                    trackSelectedButton.text = "Track Selected = " + (trackSelected ? "true" : "false");
                 }
                 else if (hit.transform.gameObject.name.Equals("DM Text") && !typeBox)
                 {
@@ -170,13 +204,24 @@ public class FancyCam : MonoBehaviour {
                 {
                     StartCoroutine(pushToServer());
                 }
+                else if (hit.transform.gameObject.name.Equals("Pull Local"))
+                {
+                    StartCoroutine(pullFromFile());
+                }
+                else if (hit.transform.gameObject.name.Equals("Push Local"))
+                {
+                    StartCoroutine(pushToFile());
+                }
                 else if (hit.transform.gameObject.name.Equals("Hide") && dm)
                 {
                     Debug.Log("Toggle visibility");
                     if (selected != null)
                     {
-                        selected.GetComponent<FancyObject>().hide = !selected.GetComponent<FancyObject>().hide;
-                        selected.GetComponent<FancyObject>().UpdateDisplay();
+                        foreach (GameObject s in selected)
+                        {
+                            s.GetComponent<FancyObject>().hide = !selected[selected.Count - 1].GetComponent<FancyObject>().hide;
+                            s.GetComponent<FancyObject>().UpdateDisplay();
+                        }
                     }
                 }
                 else if (hit.transform.gameObject.name.Equals("Map Select") && dm)
@@ -233,25 +278,49 @@ public class FancyCam : MonoBehaviour {
                     }*/
                     map.file = mapSelect.text.Substring(mapSelect.text.IndexOf(": ") + 2);
                     Debug.Log("Setting map to " + map.file);
+                    StartCoroutine(pullFromFile());
                 }
             }
         }
-        if (!typeBox && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Jump") != 0)) {
+    } 
+
+    public void FixedUpdate()
+    {
+        if (!typeBox && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Jump") != 0))
+        {
             if (Input.GetButton("Move Selected"))
             {
                 // move the selected piece
-                if (selected != null)
+                if (selected != null && selected.Count > 0)
                 {
-                    selected.transform.position += (Input.GetAxisRaw("Vertical") * horizontalForward() + Input.GetAxisRaw("Horizontal") * horizontalRight() + Input.GetAxisRaw("Jump") * Vector3.up) * (0.6f + 0.5f*Input.GetAxisRaw("Sprint"));
+                    if (selected.Count == 1)
+                    {
+                        feetMovedText.text = "Feet Moved: " + (int)(selected[0].GetComponent<FancyObject>().Displace(Time.fixedDeltaTime * 2*((Input.GetAxisRaw("Vertical") * horizontalForward() + Input.GetAxisRaw("Horizontal") * horizontalRight() + Input.GetAxisRaw("Jump") * Vector3.up) * (9 + 8 * Input.GetAxisRaw("Sprint")))))
+                            + "\nFeet Displaced: " + (int)(Vector3.Distance(selected[0].transform.position, selected[0].GetComponent<FancyObject>().ojPos) * 0.91954f);
+                    }
+                    else
+                    {
+                        foreach (GameObject s in selected)
+                            s.GetComponent<FancyObject>().Displace(Time.fixedDeltaTime * 2*((Input.GetAxisRaw("Vertical") * horizontalForward() + Input.GetAxisRaw("Horizontal") * horizontalRight() + Input.GetAxisRaw("Jump") * Vector3.up) * (9 + 8 * Input.GetAxisRaw("Sprint"))));
+                    }
                     if (trackSelected)
-                        transform.position += (Input.GetAxisRaw("Vertical") * horizontalForward() + Input.GetAxisRaw("Horizontal") * horizontalRight() + Input.GetAxisRaw("Jump") * Vector3.up) * (0.6f + 0.5f * Input.GetAxisRaw("Sprint"));
+                        transform.position += Time.fixedDeltaTime * 2*((Input.GetAxisRaw("Vertical") * horizontalForward() + Input.GetAxisRaw("Horizontal") * horizontalRight() + Input.GetAxisRaw("Jump") * Vector3.up) * (9 + 8 * Input.GetAxisRaw("Sprint")));
                 }
-            } else
+            }
+            else
             {
                 //move the camera
-                transform.position += (Input.GetAxisRaw("Vertical") * transform.forward + Input.GetAxisRaw("Horizontal") * transform.right + Input.GetAxisRaw("Jump") * transform.up) * (0.6f + 0.5f*Input.GetAxisRaw("Sprint"));
+                transform.position += Time.fixedDeltaTime * ((Input.GetAxisRaw("Vertical") * transform.forward + Input.GetAxisRaw("Horizontal") * transform.right + Input.GetAxisRaw("Jump") * transform.up) * (9 + 8 * Input.GetAxisRaw("Sprint"))) * 4;
             }
         }
+    }
+
+    public Vector3 averageSelectedPosition()
+    {
+        Vector3 sum = Vector3.zero;
+        foreach (GameObject s in selected)
+            sum += s.transform.position;
+        return sum / selected.Count;
     }
 
     public bool mapSelecting = false;
@@ -259,14 +328,20 @@ public class FancyCam : MonoBehaviour {
     IEnumerator pullFromFile()
     {
         yield return new WaitForEndOfFrame();
-        GameObject[] fancyObjects = GameObject.FindGameObjectsWithTag("FancyObject");
-        Debug.Log("Reading from " + localPath + map.file + fileExt);
-        System.IO.StreamReader reader = new System.IO.StreamReader(localPath + map.file + fileExt);
+        try
+        {
+            GameObject[] fancyObjects = GameObject.FindGameObjectsWithTag("FancyObject");
+            Debug.Log("Reading from " + localPath + map.file + fileExt);
+            System.IO.StreamReader reader = new System.IO.StreamReader(localPath + map.file + fileExt);
 
-        string m = reader.ReadToEnd();
-        reader.Close();
+            string m = reader.ReadToEnd();
+            reader.Close();
 
-        deserialize(m);
+            deserialize(m);
+        } catch (System.Exception e)
+        {
+            Debug.Log(e.ToString());
+        }
     }
 
     IEnumerator pullFromServer()
@@ -288,7 +363,7 @@ public class FancyCam : MonoBehaviour {
             ssh.pullContents = null;
         }
 
-        mapSelect.text = map.file;
+        mapSelect.text = "Map Name: " + map.file;
 
         while (ssh.pullFile != null && ssh.pullFile.Length > 0)
         {
@@ -315,8 +390,13 @@ public class FancyCam : MonoBehaviour {
     void deserialize(string m)
     {
         GameObject[] fancyObjects = GameObject.FindGameObjectsWithTag("FancyObject");
-        bool[] fancyList = new bool[fancyObjects.Length];
+        List<bool> fancyList = new List<bool>(fancyObjects.Length);
         int p = 0;
+        if (m.Substring(p, 3).Equals("[[["))
+        {
+            map.DeserializeSetting(m.Substring(p + 3, m.IndexOf("]]]") - (p + 3)));
+            p = m.IndexOf("]]]") + 3;
+        }
         while (p < m.Length && m.IndexOf("}", p) != -1 && m.IndexOf("{", p) != -1)
         {
             p = m.IndexOf("{", p) + 1;
@@ -327,6 +407,8 @@ public class FancyCam : MonoBehaviour {
                 GameObject o = fancyObjects[i];
                 if (o.GetComponent<FancyObject>().id.Equals(id))
                 {
+                    while (i >= fancyList.Count)
+                        fancyList.Add(false);
                     fancyList[i] = true;
                     foundIt = true;
                     o.GetComponent<FancyObject>().Deserialize(m.Substring(p, m.IndexOf("}", p) - p));
@@ -338,14 +420,16 @@ public class FancyCam : MonoBehaviour {
                 GameObject newObject = Resources.Load("Display/FancyObjectTemplate") as GameObject;
                 newObject.GetComponent<FancyObject>().Deserialize(m.Substring(p, m.IndexOf("}", p) - p));
                 GameObject.Instantiate(newObject);
+                newObject.tag = "FancyObject";
                 foundIt = true;
+                fancyObjects = GameObject.FindGameObjectsWithTag("FancyObject");
             }
         }
-        if (fancyList.Length > 0)
+        if (fancyList.Count > 0)
         {
-            for (int i = fancyList.Length - 1; i >= 0; i++)
+            for (int i = fancyList.Count - 1; i >= 0; i++)
             {
-                if (i > 0 && i < fancyList.Length && !fancyList[i])
+                if (i > 0 && i < fancyList.Count && !fancyList[i])
                 {
                     Debug.Log("Destroying " + fancyObjects[i].GetComponent<FancyObject>().title);
                     GameObject.Destroy(fancyObjects[i]);
@@ -362,9 +446,19 @@ public class FancyCam : MonoBehaviour {
         System.IO.File.WriteAllText(localPath + map.file + fileExt, serialize());
     }
 
+    IEnumerator pushToFile(string contents)
+    {
+        yield return new WaitForEndOfFrame();
+        Debug.Log("Writing to " + localPath + map.file + fileExt);
+
+        System.IO.File.WriteAllText(localPath + map.file + fileExt, contents);
+    }
+
     IEnumerator pushToServer()
     {
         yield return new WaitForEndOfFrame();
+        string map_contents = serialize();
+        StartCoroutine(pushToFile(map_contents));
         Debug.Log("Writing to server");
 
 
@@ -377,12 +471,13 @@ public class FancyCam : MonoBehaviour {
 
         //ssh.writeToFile(serverPath, serialize());
         ssh.pushFile = map.file + fileExt;
-        ssh.pushContents = serialize();
+        ssh.pushContents = map_contents;
     }
 
     string serialize()
     {
         string fancyText = "";
+        fancyText += "[[[" + map.SerializeSetting() + "]]]";
         GameObject[] fancyObjects = GameObject.FindGameObjectsWithTag("FancyObject");
         foreach (GameObject o in fancyObjects)
         {

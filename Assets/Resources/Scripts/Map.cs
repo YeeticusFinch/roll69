@@ -5,13 +5,14 @@ using UnityEngine;
 public class Map : MonoBehaviour {
 
     public string file = "Yeet";
+    public Color background = Color.black;
 
     public List<string> maps = new List<string>();
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        background = GetComponent<Camera>().backgroundColor;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -47,6 +48,21 @@ public class Map : MonoBehaviour {
             if (sel[sel.Length - 1] == ':') sel = sel.Substring(0, sel.Length - 1);
             string val = input.Substring(input.IndexOf(':', i) + 1, input.IndexOf(';', i) - (input.IndexOf(':', i) + 1));
             i = input.IndexOf(';', i) + 1;
+            
+        }
+    }
+
+    public void DeserializeSetting(string input)
+    {
+        int i = 0;
+        while (i < input.Length && input.IndexOf(':', i) != -1)
+        {
+            string sel = input.Substring(i, input.IndexOf(':', i) - i);
+            if (sel[0] == ';') sel = sel.Substring(1);
+            if (sel[sel.Length - 1] == ':') sel = sel.Substring(0, sel.Length - 1);
+            string val = input.Substring(input.IndexOf(':', i) + 1, input.IndexOf(';', i) - (input.IndexOf(':', i) + 1));
+            i = input.IndexOf(';', i) + 1;
+
             if (sel.Substring(0, 4).Equals("maps"))
             {
                 maps.Add(val);
@@ -55,7 +71,22 @@ public class Map : MonoBehaviour {
             {
                 file = val;
             }
+            else if (sel.Equals("bg-r"))
+            {
+                background.r = float.Parse(val);
+            }
+            else if (sel.Equals("bg-g"))
+            {
+                background.g = float.Parse(val);
+            }
+            else if (sel.Equals("bg-b") || sel.Equals("be.b"))
+            {
+                background.b = float.Parse(val);
+            }
         }
+
+        GetComponent<FancyCam>().BackgroundColorPicker.SetColor(background);
+        GetComponent<Camera>().backgroundColor = background;
     }
 
     public string Serialize()
@@ -68,5 +99,14 @@ public class Map : MonoBehaviour {
         return "file:" + file + ";"
             + mapStr
             ;
+    }
+
+    public string SerializeSetting()
+    {
+        return
+        "bg-r:" + background.r + ";"
+        + "bg-g:" + background.g + ";"
+        + "bg-b:" + background.b + ";"
+        ;
     }
 }
