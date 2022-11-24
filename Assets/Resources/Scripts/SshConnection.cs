@@ -64,7 +64,7 @@ public class SshConnection : MonoBehaviour
     {
         try
         {
-            var connectionInfo = new PasswordConnectionInfo(_host, 22, _username, _password);
+            var connectionInfo = new PasswordConnectionInfo(PrivateConstants.host, 22, PrivateConstants.ssh_user, PrivateConstants.ssh_pass);
             ConsoleText.text += "connection infos : ok\n";
 
             using (var client = new SshClient(connectionInfo))
@@ -96,7 +96,7 @@ public class SshConnection : MonoBehaviour
 
         try
         {
-            var connectionInfo = new PasswordConnectionInfo(_host, 22, _username, _password);
+            var connectionInfo = new PasswordConnectionInfo(PrivateConstants.host, 22, PrivateConstants.ssh_user, PrivateConstants.ssh_pass);
             ConsoleText.text = "connection infos : ok\n";
 
             using (var client = new SshClient(connectionInfo))
@@ -133,7 +133,7 @@ public class SshConnection : MonoBehaviour
         yield return new WaitForEndOfFrame();
         reconnect = false;
         //ConsoleText.text = "connecting... "
-        var connectionInfo = new PasswordConnectionInfo(_host, 22, _username, _password);
+        var connectionInfo = new PasswordConnectionInfo(PrivateConstants.host, 22, PrivateConstants.ssh_user, PrivateConstants.ssh_pass);
         ConsoleText.text = "connection infos : ok\n";
 
         using (var client = new SshClient(connectionInfo))

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135279769241237304}
   - component: {fileID: 212298599738405624}
   m_Layer: 0
-  m_Name: Stalin
+  m_Name: FancyObjectTemplate
   m_TagString: FancyObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

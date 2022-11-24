@@ -20,6 +20,7 @@ public class FancyCam : MonoBehaviour {
     public SshConnection ssh;
     public TextMesh mapSelect;
     public TextMesh feetMovedText;
+    public TextMesh DM_only;
 
     public example BackgroundColorPicker;
 
@@ -90,9 +91,11 @@ public class FancyCam : MonoBehaviour {
         if (!dm || selected == null || selected.Count == 0)
         {
             hideText.text = "";
+            DM_only.text = "";
         } else
         {
             hideText.text = "Hide = " + (selected[selected.Count-1].GetComponent<FancyObject>().hide ? "true" : "false");
+            DM_only.text = "DM Only = " + (selected[selected.Count - 1].GetComponent<FancyObject>().dm_only ? "true" : "false");
         }
 
         if (Input.GetButtonDown("Flashlight") && !typeBox)
@@ -221,6 +224,16 @@ public class FancyCam : MonoBehaviour {
                         {
                             s.GetComponent<FancyObject>().hide = !selected[selected.Count - 1].GetComponent<FancyObject>().hide;
                             s.GetComponent<FancyObject>().UpdateDisplay();
+                        }
+                    }
+                } else if (hit.transform.gameObject.name.Equals("DM Only") && dm)
+                {
+                    Debug.Log("Toggle DM only");
+                    if (selected != null)
+                    {
+                        foreach (GameObject s in selected)
+                        {
+                            s.GetComponent<FancyObject>().hide = !selected[selected.Count - 1].GetComponent<FancyObject>().hide;
                         }
                     }
                 }
