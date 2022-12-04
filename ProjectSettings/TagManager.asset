@@ -6,6 +6,8 @@ TagManager:
   tags:
   - FancyObject
   - DeleteOnClear
+  - Dice
+  - DiceButton
   layers:
   - Default
   - TransparentFX

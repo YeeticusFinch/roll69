@@ -41,6 +41,8 @@ public class FancyObject : NetworkBehaviour
 
     public List<Vector3> pastPositions = new List<Vector3>();
 
+    public List<string> sounds = new List<string>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -242,6 +244,7 @@ public class FancyObject : NetworkBehaviour
     public void Deserialize(string input)
     {
         pastPositions = new List<Vector3>();
+        sounds = new List<string>();
         int i = 0;
         feetMoved = 0;
         model0 = null;
@@ -273,6 +276,9 @@ public class FancyObject : NetworkBehaviour
             {
                 case "tag":
                     tags.Add(val);
+                    break;
+                case "sound":
+                    sounds.Add(val);
                     break;
                 case "id":
                     id = val;
@@ -393,6 +399,9 @@ public class FancyObject : NetworkBehaviour
                 case "hide":
                     hide = bool.Parse(val);
                     break;
+                case "dm_only":
+                    dm_only = bool.Parse(val);
+                    break;
             }
         }
         UpdateDisplay();
@@ -407,6 +416,10 @@ public class FancyObject : NetworkBehaviour
         foreach (string tag in tags)
         {
             serializedTags += ";tag:" + tag;
+        }
+        foreach (string sound in sounds)
+        {
+            serializedTags += ";sound:" + sound;
         }
         return "id:" + id
             + ";name:" + name.Replace("(Clone)", "")
@@ -436,6 +449,7 @@ public class FancyObject : NetworkBehaviour
             + (model3 != null && model3.Length > 0 ? ";model3:" + model3 : "")
             + ";currentDisplay:" + currentDisplay
             + ";hide:" + (hide ? "true" : "false")
+            + ";dm_only:" + dm_only
             + serializedTags
             + ";";
     }

@@ -21,6 +21,10 @@ public class FancyCam : MonoBehaviour {
     public TextMesh mapSelect;
     public TextMesh feetMovedText;
     public TextMesh DM_only;
+    public TextMesh playSoundOnSelectButton;
+    public TextMesh diceRolled;
+
+    public bool fullAutoDiceRoll = false;
 
     public example BackgroundColorPicker;
 
@@ -29,6 +33,9 @@ public class FancyCam : MonoBehaviour {
     public TextMesh consoleText;
 
     public bool dm = false;
+    bool playSoundOnSelect = true;
+
+    public Dictionary<string, string> config = new Dictionary<string, string>();
 
     string localPath = "Assets/Resources/";
     //string serverPath = "Yeet.txt";
@@ -36,11 +43,81 @@ public class FancyCam : MonoBehaviour {
 
     public List<GameObject> deleteOnClear = new List<GameObject>();
 
+    public SoundLib sound;
+
     // Use this for initialization
-    void Start () {
+    void Start() {
+        ParseConfig();
+        sound.init();
+
+        if (Config("Play_Intro_Music_On_Repeat").Equals("true"))
+        {
+            StartCoroutine(RepeatIntroSong());
+        } else if (sound != null && !Config("Skip_Intro_Music").Equals("true"))
+        {
+            sound.PlayAtObject(sound.audioClips[0], this.gameObject);
+        }
+
+        if (Config("Pull_On_Startup").Equals("true"))
+        {
+            StartCoroutine(pullFromFile());
+        }
+
         map = this.gameObject.AddComponent<Map>();
         BackgroundColorPicker.Init(map);
-	}
+    }
+
+    public string Config(string k)
+    {
+        if (config.ContainsKey(k))
+            return config[k];
+        return "";
+    }
+
+    void ParseConfig()
+    {
+        if (!System.IO.File.Exists("config.txt"))
+            System.IO.File.WriteAllText("config.txt", "Play_Intro_Music_On_Repeat = false\nSkip_Intro_Music = false\nSound_Pitch = 1.0\nSound_Volume = 1.0\nPull_On_Startup = true\nTrack_Selected = false\nPlay_Sound_On_Character_Click = true\nFull_Auto_Dice_Roll = false");
+        System.IO.StreamReader reader = new System.IO.StreamReader("config.txt");
+
+        while (reader.Peek() >= 0)
+        {
+            string line = reader.ReadLine();
+            if (line.IndexOf(" = ") != -1)
+                config.Add(line.Substring(0, line.IndexOf(" =")), line.Substring(line.IndexOf("=") + 2));
+            else if (line.IndexOf("=") != -1)
+                config.Add(line.Substring(0, line.IndexOf("=")), line.Substring(line.IndexOf("=") + 1));
+        }
+        reader.Close();
+
+        foreach (string k in config.Keys)
+        {
+            Debug.Log(k + " --> " + config[k]);
+        }
+
+        float.TryParse(Config("Sound_Volume"), out sound.volume);
+        float.TryParse(Config("Sound_Pitch"), out sound.pitch);
+
+        if (Config("DM_Passcode").Equals(PrivateConstants.dm_pass))
+            dm = true;
+
+        trackSelected = Config("Track_Selected").Equals("true");
+        playSoundOnSelect = Config("Play_Sound_On_Character_Click").Equals("true");
+        fullAutoDiceRoll = Config("Full_Auto_Dice_Roll").Equals("true");
+
+        playSoundOnSelectButton.text = "Sound on Character Click = " + (playSoundOnSelect ? "true" : "false");
+        dmText.text = "DM = " + (dm ? "true" : "false");
+        trackSelectedButton.text = "Track Selected = " + (trackSelected ? "true" : "false");
+    }
+
+    IEnumerator RepeatIntroSong()
+    {
+        while (Config("Play_Intro_Music_On_Repeat").Equals("true"))
+        {
+            sound.PlayAtObject(sound.audioClips[0], this.gameObject);
+            yield return new WaitForSecondsRealtime(163f / sound.pitch);
+        }
+    }
 
     string prevKey = "";
     public bool typeBox = false;
@@ -119,6 +196,19 @@ public class FancyCam : MonoBehaviour {
             if (trackSelected)
                 transform.position -= reverse;
         }
+        if (fullAutoDiceRoll && Input.GetButton("Fire1"))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1000, mask))
+            {
+                if (hit.transform.gameObject.tag == "DiceButton")
+                {
+                    int num = int.Parse(hit.transform.gameObject.name.Substring(1));
+                    GetComponent<DiceRoller>().roll(num);
+                }
+            }
+        }
         if (Input.GetButtonDown("Fire1"))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -130,19 +220,33 @@ public class FancyCam : MonoBehaviour {
                 {
                     StartCoroutine(ClickAnim(hit.transform.GetComponent<TextMesh>()));
                 }
-                if (hit.transform.GetComponent<FancyObject>() != null && (dm || !hit.transform.GetComponent<FancyObject>().dm_only))
+                if (hit.transform.GetComponent<FancyObject>() != null)
                 {
-                    if (Input.GetButton("Sprint"))
+                    if (playSoundOnSelect)
                     {
-                        selected.Add(hit.transform.gameObject);
-                        selectedText.text += (selected.Count > 1 ? "; " : "") + hit.transform.gameObject.GetComponent<FancyObject>().title;
-                        feetMovedText.text = "";
-                    } else
+                        Debug.Log("Attempting to search for sound");
+                        if (hit.transform.GetComponent<FancyObject>().sounds.Count > 0)
+                        {
+                            string fancyClip = hit.transform.GetComponent<FancyObject>().sounds[Random.Range(0, hit.transform.GetComponent<FancyObject>().sounds.Count)];
+                            Debug.Log("Playing Sound " + fancyClip);
+                            sound.PlayAtObject(fancyClip, this.gameObject);
+                        }
+                    }
+                    if (dm || !hit.transform.GetComponent<FancyObject>().dm_only)
                     {
-                        selected = new List<GameObject>();
-                        selected.Add(hit.transform.gameObject);
-                        selectedText.text = "Selected = " + hit.transform.gameObject.GetComponent<FancyObject>().title;
-                        feetMovedText.text = "Feet Moved: " + (int)(selected[0].GetComponent<FancyObject>().feetMoved) + "\nFeet Displaced: " + (int)(Vector3.Distance(selected[0].GetComponent<FancyObject>().ojPos, selected[0].transform.position) * 0.91954f);
+                        if (Input.GetButton("Sprint"))
+                        {
+                            selected.Add(hit.transform.gameObject);
+                            selectedText.text += (selected.Count > 1 ? "; " : "") + hit.transform.gameObject.GetComponent<FancyObject>().title;
+                            feetMovedText.text = "";
+                        }
+                        else
+                        {
+                            selected = new List<GameObject>();
+                            selected.Add(hit.transform.gameObject);
+                            selectedText.text = "Selected = " + hit.transform.gameObject.GetComponent<FancyObject>().title;
+                            feetMovedText.text = "Feet Moved: " + (int)(selected[0].GetComponent<FancyObject>().feetMoved) + "\nFeet Displaced: " + (int)(Vector3.Distance(selected[0].GetComponent<FancyObject>().ojPos, selected[0].transform.position) * 0.91954f);
+                        }
                     }
                 }
                 else if (hit.transform.gameObject.name.Equals("Change Sprite"))
@@ -184,6 +288,26 @@ public class FancyCam : MonoBehaviour {
                     //Debug.Log("Toggle track selected object");
                     trackSelected = !trackSelected;
                     trackSelectedButton.text = "Track Selected = " + (trackSelected ? "true" : "false");
+                }
+                else if (hit.transform.gameObject.name.Equals("Stop Sounds"))
+                {
+                    //Debug.Log("Stopping All Sounds");
+                    sound.StopAudio();
+                }
+                else if (hit.transform.gameObject.name.Equals("Clear Dice"))
+                {
+                    GameObject[] dice = GameObject.FindGameObjectsWithTag("Dice");
+                    foreach (GameObject di in dice)
+                    {
+                        GameObject.Destroy(di);
+                    }
+                    diceRolled.text = "Roll a di:";
+                    GetComponent<DiceRoller>().rolled = 0;
+                }
+                else if (hit.transform.gameObject.name.Equals(playSoundOnSelectButton.name))
+                {
+                    playSoundOnSelect = !playSoundOnSelect;
+                    playSoundOnSelectButton.text = "Sound on Character Click = " + (playSoundOnSelect ? "true" : "false");
                 }
                 else if (hit.transform.gameObject.name.Equals("DM Text") && !typeBox)
                 {
@@ -233,9 +357,18 @@ public class FancyCam : MonoBehaviour {
                     {
                         foreach (GameObject s in selected)
                         {
-                            s.GetComponent<FancyObject>().hide = !selected[selected.Count - 1].GetComponent<FancyObject>().hide;
+                            s.GetComponent<FancyObject>().dm_only = !selected[selected.Count - 1].GetComponent<FancyObject>().dm_only;
                         }
                     }
+                }
+                else if (hit.transform.gameObject.name.Equals("roll69 logo"))
+                {
+                    GetComponent<DiceRoller>().roll(69);
+                }
+                else if (hit.transform.gameObject.tag == "DiceButton")
+                {
+                    int num = int.Parse(hit.transform.gameObject.name.Substring(1));
+                    GetComponent<DiceRoller>().roll(num);
                 }
                 else if (hit.transform.gameObject.name.Equals("Map Select") && dm)
                 {

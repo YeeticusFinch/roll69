@@ -349,15 +349,16 @@
     <Compile Include="Assets\Resources\_MK\MKGlow\Scripts\Resources.cs" />
     <Compile Include="Assets\Resources\_MK\MKGlow\Scripts\Settings.cs" />
     <Compile Include="Assets\Resources\Scripts\CarlMath.cs" />
+    <Compile Include="Assets\Resources\Scripts\DeleteInTime.cs" />
     <Compile Include="Assets\Resources\Scripts\Di.cs" />
     <Compile Include="Assets\Resources\Scripts\DiceRoller.cs" />
     <Compile Include="Assets\Resources\Scripts\FancyCam.cs" />
     <Compile Include="Assets\Resources\Scripts\FancyObject.cs" />
     <Compile Include="Assets\Resources\Scripts\Map.cs" />
     <Compile Include="Assets\Resources\Scripts\PrivateConstants.cs" />
+    <Compile Include="Assets\Resources\Scripts\SoundLib.cs" />
     <Compile Include="Assets\Resources\Scripts\SshConnection.cs" />
     <Compile Include="Assets\Resources\Scripts\TextHider.cs" />
-    <Compile Include="Assets\Simple Helvetica\SimpleHelvetica.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ColorPickerTriangle\Shaders\VertexColor.shader" />
@@ -419,7 +420,6 @@
     <None Include="Assets\Resources\_MK\MKGlow\Shaders\VariantsSelective\Sprites\Sprites-Default.shader" />
     <None Include="Assets\Resources\_MK\MKGlow\Shaders\VariantsSelective\Sprites\Sprites-Diffuse.shader" />
     <None Include="Assets\Resources\_MK\MKGlow\Shaders\VariantsSelective\UI\UI-Default.shader" />
-    <None Include="Assets\Simple Helvetica\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
