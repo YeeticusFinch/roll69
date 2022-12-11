@@ -32,6 +32,7 @@ A subtle spin-off of the Roll20 virtual tabletop
 - Movement measurement (in feet)
 - 3D dice roller
 - Soundbites that play a sound whenever you click on a token (ie. Kool Aid Man says "Oh Yeah")
+- A config file (config.txt) to control specific configuration settings
 
 ## Planned Features:
 
