@@ -16,6 +16,9 @@ A subtle spin-off of the Roll20 virtual tabletop
 - Click "Push" to set the server equal to your client
 - If Track Selected = true, your camera will move with your selected character
 - Press R to revert a token's movement by 5 feet. Repeatedly press R to completely revert a token's movement
+- Click on the button labeled with the name of a di to roll that di
+- If you roll another di, the numbers will be added together (on the right side of the screen, where it says "roll a di")
+- Click on the "CLEAR DICE" button to reset that incrementing number, and to clear the dice from the screen
 
 ## Current Features:
 
@@ -27,12 +30,12 @@ A subtle spin-off of the Roll20 virtual tabletop
 - Saves online in the cloud
 - select between different maps
 - Movement measurement (in feet)
+- 3D dice roller
+- Soundbites that play a sound whenever you click on a token (ie. Kool Aid Man says "Oh Yeah")
 
 ## Planned Features:
 
 - 3d area effect selectors
-- 3D dice roller
 - Fix the goddamn bugs
-- Soundbites that play a sound whenever you click on a token (ie. Kool Aid Man says "Oh Yeah")
 
 ![image](https://user-images.githubusercontent.com/50182007/201145007-714c0c44-c99b-453c-8972-9bcda18faf11.png)
