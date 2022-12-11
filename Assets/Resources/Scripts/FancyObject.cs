@@ -29,6 +29,8 @@ public class FancyObject : NetworkBehaviour
     public Sprite[] sprites = new Sprite[6];
     public GameObject[] models = new GameObject[4];
 
+    public bool edited = false;
+
     public GameObject display;
     public int currentDisplay;
     public bool dm_only = true;
@@ -145,6 +147,12 @@ public class FancyObject : NetworkBehaviour
         }
     }
 
+    public void Edited()
+    {
+        edited = true;
+        timestamp = System.DateTimeOffset.Now.ToUnixTimeMilliseconds();
+    }
+
     public void NextSprite()
     {
         currentDisplay++;
@@ -241,8 +249,19 @@ public class FancyObject : NetworkBehaviour
         }
     }
 
+    public string serialized = "";
+
     public void Deserialize(string input)
     {
+        //Debug.Log(input.Substring(input.IndexOf("timestamp:") + 10, (input.IndexOf(";", input.IndexOf("timestamp:") + 10) - (input.IndexOf("timestamp:") + 10))));
+        if (serialized.Equals(input) && !edited)
+        //if (timestamp > 1 && long.Parse(input.Substring(input.IndexOf("timestamp:") + 10, (input.IndexOf(";", input.IndexOf("timestamp:") + 10) - (input.IndexOf("timestamp:") + 10)))) == timestamp)
+        {
+            Debug.Log("Saved version is identical, no update applied");
+            return;
+        }
+        Debug.Log("Saving serialized string");
+        serialized = input;
         pastPositions = new List<Vector3>();
         sounds = new List<string>();
         int i = 0;
@@ -256,6 +275,7 @@ public class FancyObject : NetworkBehaviour
         sprite3 = null;
         sprite4 = null;
         sprite5 = null;
+        edited = false;
         while (i < input.Length && input.IndexOf(':', i) != -1)
         {
             /*
@@ -410,6 +430,8 @@ public class FancyObject : NetworkBehaviour
 
     public string Serialize()
     {
+        if (!edited && serialized.Length > 0)
+            return serialized;
         pastPositions = new List<Vector3>();
         feetMoved = 0;
         string serializedTags = "";
@@ -421,7 +443,7 @@ public class FancyObject : NetworkBehaviour
         {
             serializedTags += ";sound:" + sound;
         }
-        return "id:" + id
+        serialized = "id:" + id
             + ";name:" + name.Replace("(Clone)", "")
             + ";flat:" + (flat ? 1 : 0)
             + ";owner:" + owner
@@ -452,6 +474,7 @@ public class FancyObject : NetworkBehaviour
             + ";dm_only:" + dm_only
             + serializedTags
             + ";";
+        return serialized;
     }
 
     /*

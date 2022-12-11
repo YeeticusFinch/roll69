@@ -8,6 +8,7 @@ TagManager:
   - DeleteOnClear
   - Dice
   - DiceButton
+  - ModButton
   layers:
   - Default
   - TransparentFX

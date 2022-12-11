@@ -52,7 +52,7 @@ public class FancyCam : MonoBehaviour {
 
         if (Config("Play_Intro_Music_On_Repeat").Equals("true"))
         {
-            StartCoroutine(RepeatIntroSong());
+            //StartCoroutine(RepeatIntroSong());
         } else if (sound != null && !Config("Skip_Intro_Music").Equals("true"))
         {
             sound.PlayAtObject(sound.audioClips[0], this.gameObject);
@@ -84,9 +84,9 @@ public class FancyCam : MonoBehaviour {
         {
             string line = reader.ReadLine();
             if (line.IndexOf(" = ") != -1)
-                config.Add(line.Substring(0, line.IndexOf(" =")), line.Substring(line.IndexOf("=") + 2));
+                configAdd(line.Substring(0, line.IndexOf(" =")), line.Substring(line.IndexOf("=") + 2));
             else if (line.IndexOf("=") != -1)
-                config.Add(line.Substring(0, line.IndexOf("=")), line.Substring(line.IndexOf("=") + 1));
+                configAdd(line.Substring(0, line.IndexOf("=")), line.Substring(line.IndexOf("=") + 1));
         }
         reader.Close();
 
@@ -108,6 +108,29 @@ public class FancyCam : MonoBehaviour {
         playSoundOnSelectButton.text = "Sound on Character Click = " + (playSoundOnSelect ? "true" : "false");
         dmText.text = "DM = " + (dm ? "true" : "false");
         trackSelectedButton.text = "Track Selected = " + (trackSelected ? "true" : "false");
+
+        if (Config("Play_Intro_Music_On_Repeat").Equals("true"))
+        {
+            StartCoroutine(RepeatIntroSong());
+        }
+    }
+
+    void configAdd(string key, string val)
+    {
+        if (config.ContainsKey(key))
+            config[key] = val;
+        else
+            config.Add(key, val);
+    }
+
+    void UpdateConfig()
+    {
+        string new_config = "";
+        foreach (string k in config.Keys)
+        {
+            new_config += k + " = " + config[k] + "\n";
+        }
+        System.IO.File.WriteAllText("config.txt", new_config);
     }
 
     IEnumerator RepeatIntroSong()
@@ -173,6 +196,7 @@ public class FancyCam : MonoBehaviour {
         {
             hideText.text = "Hide = " + (selected[selected.Count-1].GetComponent<FancyObject>().hide ? "true" : "false");
             DM_only.text = "DM Only = " + (selected[selected.Count - 1].GetComponent<FancyObject>().dm_only ? "true" : "false");
+            selected[selected.Count - 1].GetComponent<FancyObject>().Edited();
         }
 
         if (Input.GetButtonDown("Flashlight") && !typeBox)
@@ -206,6 +230,59 @@ public class FancyCam : MonoBehaviour {
                 {
                     int num = int.Parse(hit.transform.gameObject.name.Substring(1));
                     GetComponent<DiceRoller>().roll(num);
+                }
+            }
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1000, mask))
+            {
+                if (hit.transform.gameObject.tag == "DiceButton")
+                {
+                    int num = int.Parse(hit.transform.gameObject.name.Substring(1)) + 1;
+                    hit.transform.gameObject.GetComponent<TextMesh>().text = "d" + num;
+                    hit.transform.gameObject.name = "D" + num;
+                    if (num == 4 || num == 6 || num == 8 || num == 10 || num == 12 || num == 20 || num == 100)
+                    {
+                        hit.transform.gameObject.GetComponent<TextMesh>().color = new Color(0, 1, 54f / 255f);
+                    }
+                    else
+                        hit.transform.gameObject.GetComponent<TextMesh>().color = new Color(199f / 255f, 212f / 255f, 200f / 255f);
+                    //GetComponent<DiceRoller>().roll(num);
+                }
+                else if (hit.transform.gameObject.tag == "ModButton")
+                {
+                    int num = int.Parse(hit.transform.gameObject.name.Substring(1)) + 1;
+                    hit.transform.gameObject.GetComponent<TextMesh>().text = "+" + num;
+                    hit.transform.gameObject.name = "+" + num;
+                }
+            }
+        } else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1000, mask))
+            {
+                if (hit.transform.gameObject.tag == "DiceButton")
+                {
+                    int num = int.Parse(hit.transform.gameObject.name.Substring(1)) - 1;
+                    hit.transform.gameObject.GetComponent<TextMesh>().text = "d" + num;
+                    hit.transform.gameObject.name = "D" + num;
+                    if (num == 4 || num == 6 || num == 8 || num == 10 || num == 12 || num == 20 || num == 100)
+                    {
+                        hit.transform.gameObject.GetComponent<TextMesh>().color = new Color(0, 1, 54f / 255f);
+                    }
+                    else
+                        hit.transform.gameObject.GetComponent<TextMesh>().color = new Color(199f / 255f, 212f / 255f, 200f / 255f);
+                    //GetComponent<DiceRoller>().roll(num);
+                }
+                else if (hit.transform.gameObject.tag == "ModButton")
+                {
+                    int num = int.Parse(hit.transform.gameObject.name.Substring(1)) - 1;
+                    hit.transform.gameObject.GetComponent<TextMesh>().text = "+" + num;
+                    hit.transform.gameObject.name = "+" + num;
                 }
             }
         }
@@ -254,8 +331,11 @@ public class FancyCam : MonoBehaviour {
                     //Debug.Log("Changing sprite of selected object");
                     if (selected != null && selected.Count > 0)
                     {
-                        foreach(GameObject s in selected)
+                        foreach (GameObject s in selected)
+                        {
                             s.GetComponent<FancyObject>().NextSprite();
+                            s.GetComponent<FancyObject>().Edited();
+                        }
                     }
                 }
                 else if (hit.transform.gameObject.name.Equals("First Person"))
@@ -274,12 +354,16 @@ public class FancyCam : MonoBehaviour {
                         if (selected.Count == 1)
                         {
                             selected[0].transform.SetPositionAndRotation(this.transform.position, Quaternion.Euler(selected[0].GetComponent<FancyObject>().modelEulers));
+                            selected[0].GetComponent<FancyObject>().Edited();
                         }
                         else
                         {
                             Vector3 diff = transform.position - averageSelectedPosition();
                             foreach (GameObject s in selected)
+                            {
                                 s.transform.position += diff;
+                                s.GetComponent<FancyObject>().Edited();
+                            }
                         }
                     }
                 }
@@ -301,8 +385,26 @@ public class FancyCam : MonoBehaviour {
                     {
                         GameObject.Destroy(di);
                     }
-                    diceRolled.text = "Roll a di:";
                     GetComponent<DiceRoller>().rolled = 0;
+                    GetComponent<DiceRoller>().modifier = 0;
+                    GetComponent<DiceRoller>().diceCounts = new Dictionary<int, int>();
+                    GetComponent<DiceRoller>().UpdateRolledText();
+                }
+                else if (hit.transform.gameObject.name.Equals("Reset Dice"))
+                {
+                    GameObject[] dice = GameObject.FindGameObjectsWithTag("Dice");
+                    foreach (GameObject di in dice)
+                    {
+                        GameObject.Destroy(di);
+                    }
+                    GetComponent<DiceRoller>().rolled = 0;
+                    GetComponent<DiceRoller>().diceCounts = new Dictionary<int, int>();
+                    GetComponent<DiceRoller>().UpdateRolledText();
+                }
+                else if (hit.transform.gameObject.name.Equals("Reset Mod"))
+                {
+                    GetComponent<DiceRoller>().modifier = 0;
+                    GetComponent<DiceRoller>().UpdateRolledText();
                 }
                 else if (hit.transform.gameObject.name.Equals(playSoundOnSelectButton.name))
                 {
@@ -339,6 +441,14 @@ public class FancyCam : MonoBehaviour {
                 {
                     StartCoroutine(pushToFile());
                 }
+                else if (hit.transform.gameObject.name.Equals("Pull Config"))
+                {
+                    ParseConfig();
+                }
+                else if (hit.transform.gameObject.name.Equals("Push Config"))
+                {
+                    UpdateConfig();
+                }
                 else if (hit.transform.gameObject.name.Equals("Hide") && dm)
                 {
                     Debug.Log("Toggle visibility");
@@ -348,6 +458,7 @@ public class FancyCam : MonoBehaviour {
                         {
                             s.GetComponent<FancyObject>().hide = !selected[selected.Count - 1].GetComponent<FancyObject>().hide;
                             s.GetComponent<FancyObject>().UpdateDisplay();
+                            s.GetComponent<FancyObject>().Edited();
                         }
                     }
                 } else if (hit.transform.gameObject.name.Equals("DM Only") && dm)
@@ -358,6 +469,7 @@ public class FancyCam : MonoBehaviour {
                         foreach (GameObject s in selected)
                         {
                             s.GetComponent<FancyObject>().dm_only = !selected[selected.Count - 1].GetComponent<FancyObject>().dm_only;
+                            s.GetComponent<FancyObject>().Edited();
                         }
                     }
                 }
@@ -369,6 +481,12 @@ public class FancyCam : MonoBehaviour {
                 {
                     int num = int.Parse(hit.transform.gameObject.name.Substring(1));
                     GetComponent<DiceRoller>().roll(num);
+                }
+                else if (hit.transform.gameObject.tag == "ModButton")
+                {
+                    int num = int.Parse(hit.transform.gameObject.name.Substring(1));
+                    GetComponent<DiceRoller>().modifier += num;
+                    GetComponent<DiceRoller>().UpdateRolledText();
                 }
                 else if (hit.transform.gameObject.name.Equals("Map Select") && dm)
                 {
@@ -443,11 +561,15 @@ public class FancyCam : MonoBehaviour {
                     {
                         feetMovedText.text = "Feet Moved: " + (int)(selected[0].GetComponent<FancyObject>().Displace(Time.fixedDeltaTime * 2*((Input.GetAxisRaw("Vertical") * horizontalForward() + Input.GetAxisRaw("Horizontal") * horizontalRight() + Input.GetAxisRaw("Jump") * Vector3.up) * (9 + 8 * Input.GetAxisRaw("Sprint")))))
                             + "\nFeet Displaced: " + (int)(Vector3.Distance(selected[0].transform.position, selected[0].GetComponent<FancyObject>().ojPos) * 0.91954f);
+                        selected[0].GetComponent<FancyObject>().Edited();
                     }
                     else
                     {
                         foreach (GameObject s in selected)
-                            s.GetComponent<FancyObject>().Displace(Time.fixedDeltaTime * 2*((Input.GetAxisRaw("Vertical") * horizontalForward() + Input.GetAxisRaw("Horizontal") * horizontalRight() + Input.GetAxisRaw("Jump") * Vector3.up) * (9 + 8 * Input.GetAxisRaw("Sprint"))));
+                        {
+                            s.GetComponent<FancyObject>().Displace(Time.fixedDeltaTime * 2 * ((Input.GetAxisRaw("Vertical") * horizontalForward() + Input.GetAxisRaw("Horizontal") * horizontalRight() + Input.GetAxisRaw("Jump") * Vector3.up) * (9 + 8 * Input.GetAxisRaw("Sprint"))));
+                            s.GetComponent<FancyObject>().Edited();
+                        }
                     }
                     if (trackSelected)
                         transform.position += Time.fixedDeltaTime * 2*((Input.GetAxisRaw("Vertical") * horizontalForward() + Input.GetAxisRaw("Horizontal") * horizontalRight() + Input.GetAxisRaw("Jump") * Vector3.up) * (9 + 8 * Input.GetAxisRaw("Sprint")));
@@ -546,7 +668,13 @@ public class FancyCam : MonoBehaviour {
         while (p < m.Length && m.IndexOf("}", p) != -1 && m.IndexOf("{", p) != -1)
         {
             p = m.IndexOf("{", p) + 1;
-            string id = m.Substring(m.IndexOf("id:", p) + 3, m.IndexOf(";", p) - (m.IndexOf("id:", p) + 3));
+            if (p < 0)
+                continue;
+            //Debug.Log(m.IndexOf("id:", p) + 3 + " " + m.IndexOf(';', m.IndexOf("id:", p) + 3) + " - " + (m.IndexOf("id:", p) + 3));
+            //Debug.Log("Substring from p = " + m.Substring(p));
+            //Debug.Log("Substring from id: = " + m.Substring(m.IndexOf("id:", p)));
+            //Debug.Log("Substring from id: +3 = " + m.Substring(m.IndexOf("id:", p)+3));
+            string id = m.Substring(m.IndexOf("id:", p) + 3, m.IndexOf(';', m.IndexOf("id:", p) + 3) - (m.IndexOf("id:", p) + 3));
             bool foundIt = false;
             for (int i = 0; i < fancyObjects.Length; i++)
             {
@@ -564,8 +692,8 @@ public class FancyCam : MonoBehaviour {
             if (!foundIt)
             {
                 GameObject newObject = Resources.Load("Display/FancyObjectTemplate") as GameObject;
+                newObject = GameObject.Instantiate(newObject);
                 newObject.GetComponent<FancyObject>().Deserialize(m.Substring(p, m.IndexOf("}", p) - p));
-                GameObject.Instantiate(newObject);
                 newObject.tag = "FancyObject";
                 foundIt = true;
                 fancyObjects = GameObject.FindGameObjectsWithTag("FancyObject");
